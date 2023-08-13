@@ -11,8 +11,8 @@ import FormInput from "../../../components/NewForm/form/FormInput";
 
 const userSchema = Yup.object().shape({
   email: Yup.string()
-    .email("Invalid email")
-    .required("The email field is required"),
+    .email("Please enter email address")
+    .required("Please enter a valid email address"),
 });
 
 const ForgotPassword = () => {

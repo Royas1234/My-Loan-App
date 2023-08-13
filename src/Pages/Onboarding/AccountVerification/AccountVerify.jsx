@@ -18,16 +18,16 @@ const AccountVerify = () => {
   const userSchema = Yup.object().shape({
     otp1: Yup.string()
       .length(1, "OTP must be 4 characters")
-      .required("The OTP field is required"),
+      .required("Please enter the OTP"),
     otp2: Yup.string()
       .length(1, "OTP must be 4 characters")
-      .required("The OTP field is required"),
+      .required("Please enter the OTP"),
     otp3: Yup.string()
       .length(1, "OTP must be 4 characters")
-      .required("The OTP field is required"),
+      .required("Please enter the OTP"),
     otp4: Yup.string()
       .length(1, "OTP must be 4 characters")
-      .required("The OTP field is required"),
+      .required("Please enter the OTP"),
   });
 
   const methods = useForm({

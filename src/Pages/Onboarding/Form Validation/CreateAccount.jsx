@@ -11,24 +11,25 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "../../../components/NewForm/form/FormInput";
 
 const userSchema = Yup.object().shape({
-  name: Yup.string().required("The name field is required"),
-  email: Yup.string()
-    .email("Invalid email")
-    .required("The email field is required"),
-  password: Yup.string()
-    .required("The password field is required")
+  name: 
+    Yup.string().required("Please enter your name"),
+  email: 
+    Yup.string().email("Please enter email address")
+    .required("Please enter a valid email address"),
+  password: 
+    Yup.string().required("Please provide a password that contains atleast 6 characters including a number")
     .matches(
       /^(?=.*\d).*$/,
-      "Password must contain at least 6 characters including a number"
+      "Please provide a password that contains atleast 6 characters including a number"
     )
-    .min(6, "Password must contain at least 6 characters"),
-  confirmPassword: Yup.string().oneOf(
-    [Yup.ref("password")],
-    "Passwords do not match!"
+    .min(6, "Please provide a password that contains atleast 6 characters including a number"),
+  confirmPassword: 
+    Yup.string().oneOf([Yup.ref("password")],
+    "Your Password does not match"
   ),
   radioButton: Yup.string()
-    .oneOf(["true"], "The radio field is required")
-    .required("The radio field is required"),
+    .oneOf(["true"], "Please agree to the terms of service and privacy policy")
+    .required("Please agree to the terms of service and  privacy policy"),
 });
 
 const CreateAccount = () => {

@@ -19,14 +19,14 @@ import FormInput from "../../../components/NewForm/form/FormInput";
 const userSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email")
-    .required("The email field is required"),
+    .required("Please enter email address"),
   password: Yup.string()
-    .required("The password field is required")
+    .required("Please enter a valid email address")
     .matches(
       /^(?=.*\d).*$/,
-      "Password must contain at least 6 characters including a number"
+      "Please provide a password that contains atleast 6 characters including a number"
     )
-    .min(6, "Password must contain at least 6"),
+    .min(6, "Please provide a password that contains atleast 6 characters including a number"),
 });
 
 const Login = () => {

@@ -35,7 +35,7 @@ const ForgotPassword = () => {
         "https://loanwise.onrender.com/api/forget-password",
         values
       );
-      navigate("/acc-verify", { state: { email: data.email } });
+      navigate("/forget-password-verify", { state: { email: data.email } });
     } catch (error) {
       if (error.response) {
         console.log("Request failed with status code:", error.response.status);

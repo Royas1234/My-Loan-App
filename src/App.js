@@ -32,7 +32,7 @@ function App() {
           <Route exact path="/security-question" element={<SecurityQuestion />}/>
           <Route exact path="/create-account" element={<CreateAccount />} />
           <Route exact path="/account-verify" element={<AccountVerify />} />
-          <Route exact path="/acc-verify" element={<ForgotPasswordVerify />} />
+          <Route exact path="/forget-password-verify" element={<ForgotPasswordVerify />} />
           <Route exact path="/new-password" element={<NewPassword />} />
           <Route exact path="/successful" element={<SuccessfulPage />} />
           <Route path="/dashboard/*" element={<NewDashboard />} />

@@ -39,7 +39,7 @@ const Pricing = () => {
             </div>
             <button
               className="join-btn"
-              onClick={() => navigate("/createAccount")}
+              onClick={() => navigate("/create-account")}
             >
               Join for free
             </button>
@@ -118,7 +118,7 @@ const Pricing = () => {
               </div>
               <button
                 className="started-btn"
-                onClick={() => navigate("/createAccount")}
+                onClick={() => navigate("/create-account")}
               >
                 Get Started Premium
               </button>
@@ -198,7 +198,7 @@ const Pricing = () => {
             <div className="trial-btn-div">
               <button
                 className="free-btn"
-                onClick={() => navigate("/createAccount")}
+                onClick={() => navigate("/create-account")}
               >
                 Start a free trial
               </button>

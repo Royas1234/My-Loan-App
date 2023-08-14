@@ -23,12 +23,12 @@ const HeroTxt = () => {
       <div className={styles.heroBtns}>
         <FilledBtn
           title={"Get Started"}
-          onClick={() => navigate("/createAccount")}
+          onClick={() => navigate("/create-account")}
         />
         <TransparentBtn
           title={"Learn More"}
           icon={Icon}
-          onClick={() => navigate("/aboutUs")}
+          onClick={() => navigate("/about-us")}
         />
       </div>
     </div>

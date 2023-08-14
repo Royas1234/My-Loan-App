@@ -13,7 +13,7 @@ const Header = () => {
 
   const navItems = [
     { name: "Home", link: "/" },
-    { name: "About Us", link: "/aboutUs" },
+    { name: "About Us", link: "/about-us" },
     { name: "Pricing", link: "/pricing" },
     { name: "Blog", link: "/blog" },
   ];
@@ -68,7 +68,7 @@ const Header = () => {
         </div>
         <div className={styles.rightHeader}>
           <div className={styles.registerLogin}>
-            <a onClick={() => navigate("/createAccount")}>Register</a>
+            <a onClick={() => navigate("/create-account")}>Register</a>
             <FilledBtn title={"Login"} onClick={() => navigate("/login")} />
           </div>
           <div className={styles.mdSm}>
@@ -79,7 +79,7 @@ const Header = () => {
               {navItem}
               <a
                 className={styles.register}
-                onClick={() => navigate("/createAccount")}
+                onClick={() => navigate("/create-account")}
               >
                 Register
               </a>

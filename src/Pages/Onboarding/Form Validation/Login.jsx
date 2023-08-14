@@ -18,10 +18,10 @@ import FormInput from "../../../components/NewForm/form/FormInput";
 
 const userSchema = Yup.object().shape({
   email: Yup.string()
-    .email("Invalid email")
-    .required("Please enter email address"),
+    .email("Please enter email address")
+    .required("Please enter a valid email address"),
   password: Yup.string()
-    .required("Please enter a valid email address")
+    .required("Please provide a password that contains atleast 6 characters including a number")
     .matches(
       /^(?=.*\d).*$/,
       "Please provide a password that contains atleast 6 characters including a number"
@@ -82,7 +82,7 @@ const Login = () => {
 
   const formFooter = (
     <p>
-      Don’t have an account? <a href="/createAccount">Sign Up</a>
+      Don’t have an account? <a href="/create-account">Sign Up</a>
     </p>
   );
 
@@ -97,7 +97,7 @@ const Login = () => {
           User already exists! Please{" "}
           <a
             style={{ textDecoration: "underline" }}
-            onClick={() => navigate("/createAccount")}
+            onClick={() => navigate("/create-account")}
           >
             Login
           </a>
@@ -144,7 +144,7 @@ const Login = () => {
               in
             </div>
             <p className="subHeading">
-              <a href="/forgotpassword">Forgot Password?</a>
+              <a href="/forgot-password">Forgot Password?</a>
             </p>
           </div>
 

@@ -11,7 +11,7 @@ const GetStarted = ({ title, content }) => {
       <p>{content}</p>
       <FilledBtn
         title={"Get Started"}
-        onClick={() => navigate("/createAccount")}
+        onClick={() => navigate("/create-account")}
       />
     </div>
   );

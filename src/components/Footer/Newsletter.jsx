@@ -12,7 +12,7 @@ const Newsletter = () => {
       <div className={styles.newsletterBtns}>
         <TransparentBtn
           title={"Subscribe"}
-          onClick={() => navigate("/createAccount")}
+          onClick={() => navigate("/create-account")}
         />
         <FilledBtn
           title={"Get A Membership"}

@@ -77,7 +77,7 @@ const CreateAccount = () => {
       if (response.status === 201) {
         localStorage.setItem("email", data.email);
         setFullName(data.name);
-        navigate("/accountVerify", {
+        navigate("/account-verify", {
           state: { email: data.email, name: data.name },
         });
         console.log("Form submitted successfully");

@@ -69,7 +69,7 @@ const AccountVerify = () => {
         }
       );
       console.log("Form submitted successfully");
-      navigate("/securityQuestion", {
+      navigate("/security-question", {
         state: { token: response.data.user_id },
       });
       console.log("Entered OTP:", data);

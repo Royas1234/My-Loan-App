@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "@chakra-ui/react";
 import AuthLayout from "../../../components/Layout/AuthLayout.jsx";
 import { FormProvider, useForm } from "react-hook-form";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { PinInput, PinInputField, HStack } from "@chakra-ui/react";
 import * as Yup from "yup";
@@ -68,6 +68,7 @@ const AccountVerify = () => {
           verificationCode: data,
         }
       );
+     
       console.log("Form submitted successfully");
       navigate("/security-question", {
         state: { token: response.data.user_id },
@@ -98,6 +99,10 @@ const AccountVerify = () => {
       </a>
     </>
   );
+  if (!email){
+    return <Navigate to = "/create-account"/>
+   
+  }
 
   return (
     <AuthLayout

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+
 import AuthLayout from "../../../components/Layout/AuthLayout";
 import { FormProvider, useForm } from "react-hook-form";
 import { Button, Select } from "@chakra-ui/react";
@@ -8,6 +8,9 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "../../../components/NewForm/form/FormInput";
 import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+
+
 
 function SecurityQuestion() {
   const userSchema = Yup.object().shape({
@@ -31,6 +34,7 @@ function SecurityQuestion() {
 
   const location = useLocation();
   const token = location.state?.token;
+
 
   const onSubmit = async (data) => {
     const values = {
@@ -79,6 +83,13 @@ function SecurityQuestion() {
     </option>
   ));
 
+  useEffect(()=>{
+    if (!token){
+      navigate("/create-account");
+     
+    }
+  },[token,navigate])
+ 
   return (
     <AuthLayout
       title={"Set Security Question"}

@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "../../../components/NewForm/form/FormInput";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { Navigate } from "react-router-dom";
 
 
 
@@ -83,69 +83,67 @@ function SecurityQuestion() {
     </option>
   ));
 
-  useEffect(()=>{
-    if (!token){
-      navigate("/create-account");
-     
-    }
-  },[token,navigate])
  
-  return (
-    <AuthLayout
-      title={"Set Security Question"}
-      subtitle={
-        "To keep your account secured, create 2 security questions and answers"
-      }
-    >
-      <div className="securityQxn">
-        <FormProvider {...methods}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Select
-              isDisabled={isSubmitting}
-              name="firstQuestion"
-              placeholder="Select a question"
-              bgColor="white"
-              color="black"
-              mb={"5px"}
-              iconColor="#007e99"
-            >
-              {option}
-            </Select>
-            <FormInput
-              name="firstAnswer"
-              placeholder={"Enter answer"}
-              autoFocus={true}
-            />
+ 
+ if (!token){
+    return<Navigate to = "/create-account" />
+ }
+ return (
+  <AuthLayout
+    title={"Set Security Question"}
+    subtitle={
+      "To keep your account secured, create 2 security questions and answers"
+    }
+  >
+    <div className="securityQxn">
+      <FormProvider {...methods}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Select
+            isDisabled={isSubmitting}
+            name="firstQuestion"
+            placeholder="Select a question"
+            bgColor="white"
+            color="black"
+            mb={"5px"}
+            iconColor="#007e99"
+          >
+            {option}
+          </Select>
+          <FormInput
+            name="firstAnswer"
+            placeholder={"Enter answer"}
+            autoFocus={true}
+          />
 
-            <Select
-              isDisabled={isSubmitting}
-              name="secondQuestion"
-              placeholder="Select a question"
-              bgColor="white"
-              color="black"
-              mt={"12px"}
-              mb={"5px"}
-              iconColor="#007e99"
-            >
-              {option}
-            </Select>
-            <FormInput name="secondAnswer" placeholder={"Enter answer"} />
+          <Select
+            isDisabled={isSubmitting}
+            name="secondQuestion"
+            placeholder="Select a question"
+            bgColor="white"
+            color="black"
+            mt={"12px"}
+            mb={"5px"}
+            iconColor="#007e99"
+          >
+            {option}
+          </Select>
+          <FormInput name="secondAnswer" placeholder={"Enter answer"} />
 
-            <div className="form-btn">
-              <Button
-                color="#fff"
-                bgColor="#007e99"
-                type="submit"
-                isLoading={methods.formState.isSubmitting}
-              >
-                Proceed
-              </Button>
-            </div>
-          </form>
-        </FormProvider>
-      </div>
-    </AuthLayout>
-  );
+          <div className="form-btn">
+            <Button
+              color="#fff"
+              bgColor="#007e99"
+              type="submit"
+              isLoading={methods.formState.isSubmitting}
+            >
+              Proceed
+            </Button>
+          </div>
+        </form>
+      </FormProvider>
+    </div>
+  </AuthLayout>
+);
 }
 
 export default SecurityQuestion;

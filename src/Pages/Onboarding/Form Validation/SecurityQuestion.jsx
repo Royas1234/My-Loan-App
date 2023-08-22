@@ -27,6 +27,7 @@ function SecurityQuestion() {
   });
 
   const {
+    register,
     handleSubmit,
     formState: { isSubmitting },
   } = methods;
@@ -37,15 +38,15 @@ function SecurityQuestion() {
 
 
   const onSubmit = async (data) => {
-    const values = {
+     const values = {
       securityQuestions: [
         {
-          question: data.firstquestion,
-          answer: data.firstAnswer,
+          question: data.firstQuestion,
+          answer: data.firstAnswer
         },
         {
           question: data.secondQuestion,
-          answer: data.secondAnswer,
+          answer: data.secondAnswer
         },
       ],
     };
@@ -57,8 +58,8 @@ function SecurityQuestion() {
       );
       console.log(response.data);
       console.log("Form submitted successfully");
-      console.log(data.firstAnswer);
-      console.log(data.secondAnswer);
+    
+      
       navigate("/login");
     } catch (error) {
       if (error.response) {
@@ -106,6 +107,7 @@ function SecurityQuestion() {
             color="black"
             mb={"5px"}
             iconColor="#007e99"
+            {...register("firstQuestion")}
           >
             {option}
           </Select>
@@ -115,7 +117,7 @@ function SecurityQuestion() {
             autoFocus={true}
           />
 
-          <Select
+          <Select 
             isDisabled={isSubmitting}
             name="secondQuestion"
             placeholder="Select a question"
@@ -124,6 +126,7 @@ function SecurityQuestion() {
             mt={"12px"}
             mb={"5px"}
             iconColor="#007e99"
+            {...register("secondQuestion")}
           >
             {option}
           </Select>

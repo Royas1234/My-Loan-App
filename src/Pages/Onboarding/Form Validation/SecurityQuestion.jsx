@@ -38,13 +38,7 @@ function SecurityQuestion() {
 
 
   const onSubmit = async (data) => {
-    console.log(data.firstQuestion)
-      console.log(data.secondQuestion)
-      console.log(data.firstAnswer);
-      console.log(data.secondAnswer);
-      
-   
-    const values = {
+     const values = {
       securityQuestions: [
         {
           question: data.firstQuestion,
@@ -64,10 +58,7 @@ function SecurityQuestion() {
       );
       console.log(response.data);
       console.log("Form submitted successfully");
-      console.log(data.firstQuestion)
-      console.log(data.secondQuestion)
-      console.log(data.firstAnswer);
-      console.log(data.secondAnswer);
+    
       
       navigate("/login");
     } catch (error) {

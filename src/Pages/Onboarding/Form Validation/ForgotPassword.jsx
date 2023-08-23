@@ -34,8 +34,10 @@ const ForgotPassword = () => {
       const response = await axios.post(
         "https://loanwise.onrender.com/api/forget-password",
         values
+       
       );
       navigate("/forget-password-verify", { state: { email: data.email } });
+      console.log(response.data)
     } catch (error) {
       if (error.response) {
         console.log("Request failed with status code:", error.response.status);
@@ -65,7 +67,7 @@ const ForgotPassword = () => {
       {inValid && (
         <span style={{ color: "red", marginBottom: "30px" }}>
           User not found. Please{" "}
-          <a
+          <a href="/"
             style={{ textDecoration: "underline" }}
             onClick={() => navigate("/create-account")}
           >

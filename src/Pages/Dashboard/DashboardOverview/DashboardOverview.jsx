@@ -5,13 +5,16 @@ import "./dashboard.css";
 import axios from 'axios'
 import ChartCards from "./components/ChartCards";
 
+
 const DashboardOverview = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [loanData, setLoanData] = useState([]);
   const [searchItems, setSearchItems] = useState("");
   
-  const [selectedCategory, setSelectedCategory] = useState(' ')
-
+  // const [selectedCategory, setSelectedCategory] = useState('')
+   const categoryStateArray  = useState('');
+    const setSelectedCategory = categoryStateArray[1]
+     
   useEffect(() => {
     axios.get("https://loanwise.onrender.com/api/loan-table")
       .then(response => {

@@ -21,7 +21,7 @@ const DashboardHeader = ({ back, backLink }) => {
           />
         </a>
         {back && (
-          <a onClick={backLink}>
+          <a href="/" onClick={backLink}>
             <div className="back">
               <img src={arrow} alt="arrow" />
               <span>back</span>

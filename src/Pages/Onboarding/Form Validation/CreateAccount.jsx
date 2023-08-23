@@ -42,7 +42,7 @@ const CreateAccount = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     setValue,
     reset,
   } = methods;
@@ -51,7 +51,12 @@ const CreateAccount = () => {
   const [inValid, setInValid] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
-  const [fullName, setFullName] = useState("");
+  // const [fullName, setFullName] = useState("");
+
+  const fullNameArray  = useState("");
+  const setFullName = fullNameArray[1];
+
+
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -110,7 +115,7 @@ const CreateAccount = () => {
 
   const formFooter = (
     <p>
-      Already have an account? <a onClick={() => navigate("/login")}>Sign In</a>
+      Already have an account? <a href="/" onClick={() => navigate("/login")}>Sign In</a>
     </p>
   );
 
@@ -119,7 +124,7 @@ const CreateAccount = () => {
       {inValid && (
         <span style={{ color: "red", marginBottom: "30px" }}>
           User already exists! Please{" "}
-          <a
+          <a href="/"
             style={{ textDecoration: "underline" }}
             onClick={() => navigate("/login")}
           >

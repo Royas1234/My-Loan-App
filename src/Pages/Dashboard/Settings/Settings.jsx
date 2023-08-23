@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-import Predictive from "./Predictive/Predictive";
 import SecurityPrivacy from "./Security-Privacy/SecurityPrivacy";
-import DashboardRule from "./Dashboard-Rule/DashboardRule";
 import "../Settings/Setting.css";
 import Settingtoggle from "./Settingtoggle";
 import Notification from "./Notification/Notification";

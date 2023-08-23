@@ -5,9 +5,7 @@ import "./Login.css";
 import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
-// import { nanoid } from "nanoid";
 import axios from "axios";
-// import { object, string } from "yup";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "../../../components/NewForm/form/FormInput";
@@ -37,7 +35,7 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting, errors, isDirty },
+    formState: { errors},
     reset,
   } = methods;
 
@@ -61,6 +59,7 @@ const Login = () => {
       );
       navigate("/dashboard/overview");
       console.log("Form submitted successfully");
+      console.log(response.data)
     } catch (error) {
       if (error.response) {
         console.log("Request failed with status code:", error.response.status);
@@ -95,7 +94,7 @@ const Login = () => {
       {inValid && (
         <span style={{ color: "red", marginBottom: "30px" }}>
           User already exists! Please{" "}
-          <a
+          <a href="/"
             style={{ textDecoration: "underline" }}
             onClick={() => navigate("/create-account")}
           >

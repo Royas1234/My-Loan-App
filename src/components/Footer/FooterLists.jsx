@@ -65,13 +65,13 @@ const FooterLists = () => {
             VI, Lagos.
           </li>
           <li>
-            <a href="">
+            <a href="/">
               <img key="linkedin" src={LinkedIn} alt="LinkedIn" />
             </a>
-            <a href="">
+            <a href="/">
               <img key="instagram" src={Instagram} alt="Instagram" />
             </a>
-            <a href="">
+            <a href="/">
               <img key="twitter" src={Twitter} alt="Twitter" />
             </a>
           </li>

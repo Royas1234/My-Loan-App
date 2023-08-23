@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import FilledBtn from "../../../../components/Button/FilledBtn";
-import TransparentBtn from "../../../../components/Button/TransparentBtn";
-import Icon2 from "../../../../Images/Dashboard/sort.svg";
+// import FilledBtn from "../../../../components/Button/FilledBtn";
 import dateArrow from "../../../../Images/Dashboard/datearrow.svg";
 import Calendar from "react-calendar";
 import "react-datepicker/dist/react-datepicker.css";
@@ -19,7 +17,7 @@ const DashSearch = ({ handleSearch, handleFilter}) => {
     year: "numeric",
   });
 
-  const button = <FilledBtn title={"Search"} type="submit" />
+  // const button = <FilledBtn title={"Search"} type="submit" />
 
   return (
     <div className="dash__titleSearch">

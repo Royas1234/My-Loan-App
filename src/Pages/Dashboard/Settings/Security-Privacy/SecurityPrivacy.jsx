@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import "./SecurityPrivacy.css";
 import Select from "react-select";
 import { FormProvider, useForm } from "react-hook-form";
-import { Button, Flex, Text } from "@chakra-ui/react";
-import FilledBtn from "../../../../components/Button/FilledBtn";
-import axios from "axios";
+import { Button} from "@chakra-ui/react";
+// import FilledBtn from "../../../../components/Button/FilledBtn";
+
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import FormInput from "./SecurityForm/FormInput";
+// import FormInput from "./SecurityForm/FormInput";
 
 /*
  * Interface
@@ -47,16 +47,14 @@ const SecurityPrivacy = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
-    setValue,
-    reset,
+    formState: { errors},
+    
   } = methods;
 
   const onSubmit = () => {
     let isValid = Object.keys(errors).length === 0;
-    {
-      isValid && alert("/successful");
-    }
+        isValid && alert("/successful");
+  
   };
 
   const options = [

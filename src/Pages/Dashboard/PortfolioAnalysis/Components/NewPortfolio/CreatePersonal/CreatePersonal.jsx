@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PersonalInfo from "./PersonalInfo";
 import EmploymentInfo from "./EmploymentInfo";
-import SuccessfulReport from "./SuccessfulReport";
+
 import UnsuccessfulReport from "./UnsuccessfulReport";
 import { useNavigate } from "react-router-dom";
 import SideBar from "../../../../../../components/SideBar/SideBar";

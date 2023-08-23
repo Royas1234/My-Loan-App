@@ -1,7 +1,6 @@
 import React from "react";
 import Barchart from "./BarChart";
 import LoanAmount from "./LoanAmount";
-import BarGraph from "./BarGraph";
 import Earnings from "../../../../Images/Dashboard/earnings.svg";
 import LoanAmountComponent from "./LoanAmountComponent";
 import NewBarGraph from "./NewBarGraph";

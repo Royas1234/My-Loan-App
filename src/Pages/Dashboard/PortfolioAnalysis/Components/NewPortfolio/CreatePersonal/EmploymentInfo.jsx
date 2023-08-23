@@ -3,12 +3,11 @@ import "../Newportfolio.css";
 import { Button, Select, FormLabel, FormControl } from "@chakra-ui/react";
 import NewFormInput from "../FormControl/NewFormInput";
 import { FormProvider, useForm } from "react-hook-form";
-// import { nanoid } from "nanoid";
 import axios from "axios";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate } from "react-router-dom";
-// import { FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react";
+
+
 
 const userSchema = Yup.object().shape({
   currentEmployer: Yup.string().required("This field is required"),
@@ -39,11 +38,10 @@ const EmploymentInfo = ({ handleNext }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
-    setValue,
-    reset,
+    formState: { isSubmitting },
+    
   } = methods;
-  const navigate = useNavigate();
+ 
   const [inValid, setInValid] = useState("");
 
   const onSubmit = async (data) => {
@@ -216,12 +214,14 @@ const EmploymentInfo = ({ handleNext }) => {
                 </FormLabel>
                 <Select
                   isDisabled={isSubmitting}
+
                   name="firstQuestion"
                   placeholder="Select option"
                   bgColor="white"
                   color="black"
                   // mb="8px"
                   iconColor="#007e99"
+                  {...register("firstQuestion")}
                 >
                   {option}
                 </Select>

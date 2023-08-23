@@ -5,7 +5,7 @@ import "./UserPreference.css";
 import { useNavigate } from "react-router-dom";
 
 const UserPreference = () => {
-  const [back, setBack] = useState(true);
+  const [back] = useState(true);
   const navigate = useNavigate();
   const backLink = () => navigate("/dashboard/settings");
   const [ballToggle, setBallToggle] = useState([

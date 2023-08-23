@@ -8,7 +8,7 @@ const Team = (props) => {
         <h2>{props.heading}</h2>
         <p className = 'team-statement'>{props.content}</p>
 
-        <img  src={props.imageUrl} />
+        <img src={props.imageUrl} alt=''/>
 
        
       </div>

@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./Pages/Website/Home/Home";
@@ -16,6 +17,7 @@ import NewDashboard from "./Pages/Dashboard/DashboardOverview/NewDashboard";
 import UserPreference from "./Pages/Dashboard/Settings/User-Preference/UserPreference";
 import ContactForm from "./components/NewForm/ContactForm";
 import CreatePersonal from "./Pages/Dashboard/PortfolioAnalysis/Components/NewPortfolio/CreatePersonal/CreatePersonal";
+let name;
 
 function App() {
   return (

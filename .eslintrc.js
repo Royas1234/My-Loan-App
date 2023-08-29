@@ -18,5 +18,7 @@ module.exports = {
 	parserOptions: {
 		ecmaVersion: "latest",
 	},
-	rules: {},
+	rules: {
+		"react/react-in-jsx-scope": "off",
+	},
 };

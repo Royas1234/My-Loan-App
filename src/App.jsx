@@ -18,6 +18,7 @@ import UserPreference from "./Pages/Dashboard/Settings/User-Preference/UserPrefe
 import ContactForm from "./components/NewForm/ContactForm";
 import CreatePersonal from "./Pages/Dashboard/PortfolioAnalysis/Components/NewPortfolio/CreatePersonal/CreatePersonal";
 let name;
+let age;
 
 function App() {
   return (

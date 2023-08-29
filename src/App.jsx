@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./Pages/Website/Home/Home";
@@ -18,30 +19,38 @@ import ContactForm from "./components/NewForm/ContactForm";
 import CreatePersonal from "./Pages/Dashboard/PortfolioAnalysis/Components/NewPortfolio/CreatePersonal/CreatePersonal";
 
 function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/about-us" element={<AboutUs />} />
-          <Route exact path="/pricing" element={<Pricing />} />
-          <Route exact path="/blog" element={<Blog />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/forgot-Password" element={<ForgotPassword />} />
-          <Route exact path="/contact-form" element={<ContactForm />} />
-          <Route exact path="/security-question" element={<SecurityQuestion />}/>
-          <Route exact path="/create-account" element={<CreateAccount />} />
-          <Route exact path="/account-verify" element={<AccountVerify />} />
-          <Route exact path="/forget-password-verify" element={<ForgotPasswordVerify />} />
-          <Route exact path="/new-password" element={<NewPassword />} />
-          <Route exact path="/successful" element={<SuccessfulPage />} />
-          <Route path="/dashboard/*" element={<NewDashboard />} />
-          <Route path="/userPreference" element={<UserPreference />} />
-          <Route path="/personal" element={<CreatePersonal />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
-  );
+	return (
+		<div className="App">
+			<BrowserRouter>
+				<Routes>
+					<Route exact path="/" element={<Home />} />
+					<Route exact path="/about-us" element={<AboutUs />} />
+					<Route exact path="/pricing" element={<Pricing />} />
+					<Route exact path="/blog" element={<Blog />} />
+					<Route exact path="/login" element={<Login />} />
+					<Route exact path="/forgot-Password" element={<ForgotPassword />} />
+					<Route exact path="/contact-form" element={<ContactForm />} />
+					<Route
+						exact
+						path="/security-question"
+						element={<SecurityQuestion />}
+					/>
+					<Route exact path="/create-account" element={<CreateAccount />} />
+					<Route exact path="/account-verify" element={<AccountVerify />} />
+					<Route
+						exact
+						path="/forget-password-verify"
+						element={<ForgotPasswordVerify />}
+					/>
+					<Route exact path="/new-password" element={<NewPassword />} />
+					<Route exact path="/successful" element={<SuccessfulPage />} />
+					<Route path="/dashboard/*" element={<NewDashboard />} />
+					<Route path="/userPreference" element={<UserPreference />} />
+					<Route path="/personal" element={<CreatePersonal />} />
+				</Routes>
+			</BrowserRouter>
+		</div>
+	);
 }
 
 export default App;

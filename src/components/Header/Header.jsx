@@ -7,89 +7,89 @@ import FilledBtn from "../../components/Button/FilledBtn";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const Header = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [selectedItem, setSelectedItem] = useState(location.pathname);
+	const navigate = useNavigate();
+	const location = useLocation();
+	const [selectedItem, setSelectedItem] = useState(location.pathname);
 
-  const navItems = [
-    { name: "Home", link: "/" },
-    { name: "About Us", link: "/about-us" },
-    { name: "Pricing", link: "/pricing" },
-    { name: "Blog", link: "/blog" },
-  ];
+	const navItems = [
+		{ name: "Home", link: "/" },
+		{ name: "About Us", link: "/about-us" },
+		{ name: "Pricing", link: "/pricing" },
+		{ name: "Blog", link: "/blog" },
+	];
 
-  const onSelectItem = (link) => {
-    setSelectedItem(link);
-  };
+	const onSelectItem = (link) => {
+		setSelectedItem(link);
+	};
 
-  const navItem = navItems.map((item, index) => (
-    <li
-      key={index}
-      onClick={(e) => {
-        e.preventDefault();
-        navigate(item.link);
-        onSelectItem(item.link);
-      }}
-      className={selectedItem === item.link ? styles.active : ""}
-    >
-      <a href={item.link}>{item.name}</a>
-    </li>
-  ));
+	const navItem = navItems.map((item, index) => (
+		<li
+			key={index}
+			onClick={(e) => {
+				e.preventDefault();
+				navigate(item.link);
+				onSelectItem(item.link);
+			}}
+			className={selectedItem === item.link ? styles.active : ""}
+		>
+			<a href={item.link}>{item.name}</a>
+		</li>
+	));
 
-  const [menu, setMenu] = useState(true);
+	const [menu, setMenu] = useState(true);
 
-  const menuToggle = () => {
-    setMenu(!menu);
-  };
+	const menuToggle = () => {
+		setMenu(!menu);
+	};
 
-  const renderMenuIcon = () => {
-    const IconComponent = menu ? HiMenu : CgClose;
-    return <IconComponent size={30} className={styles.menuIcon} />;
-  };
+	const renderMenuIcon = () => {
+		const IconComponent = menu ? HiMenu : CgClose;
+		return <IconComponent size={30} className={styles.menuIcon} />;
+	};
 
-  const logoHome = () => {
-    navigate("/");
-  };
+	const logoHome = () => {
+		navigate("/");
+	};
 
-  return (
-    <div className={styles.everyHeader}>
-      <header>
-        <div className={styles.leftHeader}>
-          <img
-            src={Logo}
-            alt="logo"
-            className={styles.logo}
-            onClick={logoHome}
-          />
+	return (
+		<div className={styles.everyHeader}>
+			<header>
+				<div className={styles.leftHeader}>
+					<img
+						src={Logo}
+						alt="logo"
+						className={styles.logo}
+						onClick={logoHome}
+					/>
 
-          <nav>
-            <ul className={styles.navlist}>{navItem}</ul>
-          </nav>
-        </div>
-        <div className={styles.rightHeader}>
-          <div className={styles.registerLogin}>
-            <a href="/" onClick={() => navigate("/create-account")}>Register</a>
-            <FilledBtn title={"Login"} onClick={() => navigate("/login")} />
-          </div>
-          <div className={styles.mdSm}>
-            <button className={styles.menuBtn} onClick={menuToggle}>
-              {renderMenuIcon()}
-            </button>
-            <ul className={!menu ? styles.menuList : styles.display}>
-              {navItem}
-              <a href="/"
-                className={styles.register}
-                onClick={() => navigate("/create-account")}
-              >
-                Register
-              </a>
-              <FilledBtn title={"Login"} onClick={() => navigate("/login")} />
-            </ul>
-          </div>
-        </div>
-      </header>
-    </div>
-  );
+					<nav>
+						<ul className={styles.navlist}>{navItem}</ul>
+					</nav>
+				</div>
+				<div className={styles.rightHeader}>
+					<div className={styles.registerLogin}>
+						<a onClick={() => navigate("/create-account")}>Register</a>
+						<FilledBtn title={"Login"} onClick={() => navigate("/login")} />
+					</div>
+					<div className={styles.mdSm}>
+						<button className={styles.menuBtn} onClick={menuToggle}>
+							{renderMenuIcon()}
+						</button>
+						<ul className={!menu ? styles.menuList : styles.display}>
+							{navItem}
+							<a
+								className={styles.register}
+								onClick={() => navigate("/create-account")}
+							>
+								Register
+							</a>
+							<FilledBtn title={"Login"} onClick={() => navigate("/login")} />
+						</ul>
+					</div>
+				</div>
+			</header>
+		</div>
+	);
 };
 
 export default Header;

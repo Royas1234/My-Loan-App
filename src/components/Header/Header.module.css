@@ -150,9 +150,9 @@ ul li a {
   gap: 20px;
 }
 
-.registerLogin a {
-  /* padding: 16px; */
-}
+/* .registerLogin a {
+  padding: 16px;
+} */
 
 @media (max-width: 1000px) {
   /* ul a {

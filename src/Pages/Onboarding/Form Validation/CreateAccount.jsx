@@ -68,15 +68,16 @@ const CreateAccount = () => {
 
   const onSubmit = async (data) => {
     const values = {
-      name: data.name,
+      fullName: data.name,
       email: data.email,
       password: data.password,
-      confirmPassword: data.confirmPassword,
+    
     };
 
     try {
       const response = await axios.post(
-        "https://loanwise.onrender.com/api/signup",
+        // "https://loanwise.onrender.com/api/signup",
+        `${process.env.REACT_APP_BACKEND_URL}/create-account`,
         values
       );
       if (response.status === 201) {

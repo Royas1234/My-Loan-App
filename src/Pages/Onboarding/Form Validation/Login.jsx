@@ -54,7 +54,8 @@ const Login = () => {
     };
     try {
       const response = await axios.post(
-        "https://loanwise.onrender.com/api/login",
+        // "https://loanwise.onrender.com/api/login",
+        `${process.env.REACT_APP_BACKEND_URL}/login`,
         values
       );
       navigate("/dashboard/overview");

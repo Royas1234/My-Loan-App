@@ -14,10 +14,10 @@ import { Navigate } from "react-router-dom";
 
 function SecurityQuestion() {
   const userSchema = Yup.object().shape({
-    firstAnswer: Yup.string().required(
+    answerOne: Yup.string().required(
       "You must select a question and enter an answer"
     ),
-    secondAnswer: Yup.string().required(
+    answerTwo: Yup.string().required(
       "You must select a question and enter an answer"
     ),
   });
@@ -34,26 +34,28 @@ function SecurityQuestion() {
   const navigate = useNavigate();
 
   const location = useLocation();
-  const token = location.state?.token;
+  const token = location.state?.token ||"hello";
+  console.log(location)
+  console.log(token)
 
 
   const onSubmit = async (data) => {
      const values = {
-      securityQuestions: [
+      jwtToken:token,
+      securityQuestion: 
         {
-          question: data.firstQuestion,
-          answer: data.firstAnswer
+          firstQuestion: data.questionOne,
+          firstAnswer: data.answerOne,
+          secondQuestion: data.questionTwo,
+          secondAnswer: data.answerTwo
         },
-        {
-          question: data.secondQuestion,
-          answer: data.secondAnswer
-        },
-      ],
+      
     };
 
     try {
       const response = await axios.put(
-        `https://loanwise.onrender.com/api/${token}/security-question`,
+        // `https://loanwise.onrender.com/api/${token}/security-question`,
+        `${process.env.REACT_APP_BACKEND_URL}/account/security-questions`,
         values
       );
       console.log(response.data);
@@ -101,36 +103,36 @@ function SecurityQuestion() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Select
             isDisabled={isSubmitting}
-            name="firstQuestion"
+            name="questionOne"
             placeholder="Select a question"
             bgColor="white"
             color="black"
             mb={"5px"}
             iconColor="#007e99"
-            {...register("firstQuestion")}
+            {...register("questionOne")}
           >
             {option}
           </Select>
           <FormInput
-            name="firstAnswer"
+            name="answerOne"
             placeholder={"Enter answer"}
             autoFocus={true}
           />
 
           <Select 
             isDisabled={isSubmitting}
-            name="secondQuestion"
+            name="questionTwo"
             placeholder="Select a question"
             bgColor="white"
             color="black"
             mt={"12px"}
             mb={"5px"}
             iconColor="#007e99"
-            {...register("secondQuestion")}
+            {...register("questionTwo")}
           >
             {option}
           </Select>
-          <FormInput name="secondAnswer" placeholder={"Enter answer"} />
+          <FormInput name="answerTwo" placeholder={"Enter answer"} />
 
           <div className="form-btn">
             <Button

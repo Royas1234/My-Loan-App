@@ -106,6 +106,7 @@ const CreateAccount = () => {
         console.error("Error while submitting form:", error.message);
       }
       reset();
+      setValue ("radioButton", "")
     }
   };
 

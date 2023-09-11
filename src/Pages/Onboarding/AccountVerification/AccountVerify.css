@@ -4,16 +4,6 @@
   flex: 1;
 }
 
-/* 
-.Verify-btn-Content {
-  margin: 28px 0;
-} */
-
-/* .OTP-Content {
-  text-align: center;
-  margin-top: 68px;
-} */
-
 .otp_input-items {
   flex: 0.25;
 }
@@ -36,11 +26,6 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
 @media screen and (max-width: 768px) {
   .otp_input-Content {
     gap: 15px;

@@ -59,35 +59,25 @@ const AccountVerify = () => {
 
   const handleVerifyClick = async (values) => {
     const data = `${values.otp1}${values.otp2}${values.otp3}${values.otp4}`;
-
     try {
       const response = await axios.post(
-        "https://loanwise.onrender.com/api/verify-signup",
+       `${process.env.REACT_APP_BACKEND_URL}/verify-account`,
         {
           email: email,
-          verificationCode: data,
+          token: data,
         }
       );
-     
-      console.log("Form submitted successfully");
       navigate("/security-question", {
-        state: { token: response.data.user_id },
+        state: { token: response.data.jwtToken },
       });
-      console.log("Entered OTP:", data);
-      console.log(response);
-      console.log("Unexpected status code:", response.status);
-    } catch (error) {
+    } 
+    catch (error) {
       if (error.response) {
-        console.log("Request failed with status code:", error.response.status);
-        console.log("Response data:", error.response.data);
-        console.log("Entered OTP:", data);
         setInValid(
           error.response.data.message === "Invalid verification code" &&
-            error.response.data.message
+          error.response.data.message
         );
-      } else {
-        console.error("Error while submitting form:", error.message);
-      }
+      } 
     }
   };
 
@@ -100,10 +90,9 @@ const AccountVerify = () => {
     </>
   );
   if (!email){
-    return <Navigate to = "/create-account"/>
+    return <Navigate to="/create-account"/>
    
   }
-
   return (
     <AuthLayout
       title="Verify Email Address"

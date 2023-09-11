@@ -5,6 +5,7 @@ import { CgClose } from "react-icons/cg";
 import Logo from "../../Images/logo.svg";
 import FilledBtn from "../../components/Button/FilledBtn";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -68,7 +69,7 @@ const Header = () => {
         </div>
         <div className={styles.rightHeader}>
           <div className={styles.registerLogin}>
-            <a href="/" onClick={() => navigate("/create-account")}>Register</a>
+            <Link to="/create-account">Register</Link>
             <FilledBtn title={"Login"} onClick={() => navigate("/login")} />
           </div>
           <div className={styles.mdSm}>
@@ -77,12 +78,7 @@ const Header = () => {
             </button>
             <ul className={!menu ? styles.menuList : styles.display}>
               {navItem}
-              <a href="/"
-                className={styles.register}
-                onClick={() => navigate("/create-account")}
-              >
-                Register
-              </a>
+             <Link to="/create-account" className={styles.register}>Register</Link>
               <FilledBtn title={"Login"} onClick={() => navigate("/login")} />
             </ul>
           </div>

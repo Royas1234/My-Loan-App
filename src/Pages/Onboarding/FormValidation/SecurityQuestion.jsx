@@ -1,4 +1,3 @@
-
 import AuthLayout from "../../../components/Layout/AuthLayout";
 import { FormProvider, useForm } from "react-hook-form";
 import { Button, Select } from "@chakra-ui/react";
@@ -9,6 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "../../../components/NewForm/form/FormInput";
 import { useLocation } from "react-router-dom";
 import { Navigate } from "react-router-dom";
+import { useState } from "react";
 
 
 
@@ -31,46 +31,38 @@ function SecurityQuestion() {
     handleSubmit,
     formState: { isSubmitting },
   } = methods;
+  
+  const [errorState, setErrorState] = useState("")
   const navigate = useNavigate();
-
   const location = useLocation();
   const token = location.state?.token;
-
-
+  
   const onSubmit = async (data) => {
-     const values = {
-      securityQuestions: [
-        {
-          question: data.firstQuestion,
-          answer: data.firstAnswer
-        },
-        {
-          question: data.secondQuestion,
-          answer: data.secondAnswer
-        },
-      ],
-    };
-
+    const { firstQuestion, firstAnswer, secondQuestion, secondAnswer} = data;
+      const values = {
+        jwtToken:token,
+        securityQuestion:{
+          firstQuestion,
+          firstAnswer,
+          secondQuestion,
+          secondAnswer
+        }
+      };
     try {
-      const response = await axios.put(
-        `https://loanwise.onrender.com/api/${token}/security-question`,
-        values
+     const response = await axios.put(
+        `${process.env.REACT_APP_BACKEND_URL}/account/security-questions`,
+         values
       );
-      console.log(response.data);
-      console.log("Form submitted successfully");
-    
-      
       navigate("/login");
-    } catch (error) {
+      console.log(response)
+    } 
+    catch (error) {
       if (error.response) {
-        console.log("Request failed with status code:", error.response.status);
-        console.log("Response data:", error.response.data);
-      } else {
-        console.error("Error while submitting form:", error.message);
+        setErrorState(error.response.data.message)
       }
     }
   };
-
+  
   const options = [
     { value: "What is your mother's name?" },
     { value: "What is your father's name?" },
@@ -84,10 +76,8 @@ function SecurityQuestion() {
     </option>
   ));
 
- 
- 
- if (!token){
-    return<Navigate to = "/create-account" />
+ if(!token){
+  return<Navigate to = "/create-account" />
  }
  return (
   <AuthLayout
@@ -96,7 +86,9 @@ function SecurityQuestion() {
       "To keep your account secured, create 2 security questions and answers"
     }
   >
+   
     <div className="securityQxn">
+      {errorState && (<span style={{ color: "red", marginBottom: "30px"}}>{errorState}</span>)}
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Select

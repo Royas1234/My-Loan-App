@@ -10,9 +10,7 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "../../../components/NewForm/form/FormInput";
 
-/*
- * Interface
- */
+
 
 const userSchema = Yup.object().shape({
   email: Yup.string()
@@ -28,9 +26,6 @@ const userSchema = Yup.object().shape({
 });
 
 const Login = () => {
-  /*
-   * Validation
-   */
   const methods = useForm({ resolver: yupResolver(userSchema) });
   const {
     register,
@@ -54,13 +49,14 @@ const Login = () => {
     };
     try {
       const response = await axios.post(
-        "https://loanwise.onrender.com/api/login",
+        `${process.env.REACT_APP_BACKEND_URL}/login`,
         values
       );
       navigate("/dashboard/overview");
       console.log("Form submitted successfully");
       console.log(response.data)
-    } catch (error) {
+    } 
+    catch (error) {
       if (error.response) {
         console.log("Request failed with status code:", error.response.status);
         console.log("Response data:", error.response.data);

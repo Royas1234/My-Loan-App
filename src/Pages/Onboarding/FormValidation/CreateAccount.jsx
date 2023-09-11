@@ -39,6 +39,7 @@ const CreateAccount = () => {
       terms: "",
     },
   });
+  
   const {
     register,
     handleSubmit,
@@ -46,17 +47,15 @@ const CreateAccount = () => {
     setValue,
     reset,
   } = methods;
+  
   const navigate = useNavigate();
   const [allErrorsState, setAllErrors] = useState("");
   const [inValid, setInValid] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
-  // const [fullName, setFullName] = useState("");
-
+  
   const fullNameArray  = useState("");
   const setFullName = fullNameArray[1];
-
-
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -68,15 +67,15 @@ const CreateAccount = () => {
 
   const onSubmit = async (data) => {
     const values = {
-      name: data.name,
+      fullName: data.name,
       email: data.email,
       password: data.password,
-      confirmPassword: data.confirmPassword,
+    
     };
 
     try {
       const response = await axios.post(
-        "https://loanwise.onrender.com/api/signup",
+      `${process.env.REACT_APP_BACKEND_URL}/create-account`,
         values
       );
       if (response.status === 201) {
@@ -85,15 +84,9 @@ const CreateAccount = () => {
         navigate("/account-verify", {
           state: { email: data.email, name: data.name },
         });
-        console.log("Form submitted successfully");
-        console.log(response);
-      } else {
-        console.log("Unexpected status code:", response.status);
-      }
+      } 
     } catch (error) {
       if (error.response) {
-        console.log("Request failed with status code:", error.response.status);
-        console.log("Response data:", error.response.data);
         setInValid(
           error.response.data.message === "User already exists! Please login" &&
             error.response.data.message
@@ -102,8 +95,7 @@ const CreateAccount = () => {
           !error.response.data.message ===
             "User already exists! Please login" && error.response.data.message
         );
-      } else {
-        console.error("Error while submitting form:", error.message);
+     
       }
       reset();
       setValue ("radioButton", "")

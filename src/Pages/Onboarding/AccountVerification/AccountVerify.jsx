@@ -90,7 +90,7 @@ const AccountVerify = () => {
     </>
   );
   if (!email){
-    return <Navigate to = "/create-account"/>
+    return <Navigate to="/create-account"/>
    
   }
   return (

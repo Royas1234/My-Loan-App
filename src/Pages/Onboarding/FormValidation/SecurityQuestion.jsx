@@ -51,7 +51,7 @@ function SecurityQuestion() {
     try {
      const response = await axios.put(
         `${process.env.REACT_APP_BACKEND_URL}/account/security-questions`,
-        values
+         values
       );
       navigate("/login");
       console.log(response)

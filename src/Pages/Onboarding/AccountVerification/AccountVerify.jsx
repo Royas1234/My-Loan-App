@@ -59,7 +59,6 @@ const AccountVerify = () => {
 
   const handleVerifyClick = async (values) => {
     const data = `${values.otp1}${values.otp2}${values.otp3}${values.otp4}`;
-
     try {
       const response = await axios.post(
        `${process.env.REACT_APP_BACKEND_URL}/verify-account`,
@@ -68,9 +67,8 @@ const AccountVerify = () => {
           token: data,
         }
       );
-        navigate("/security-question", {
+      navigate("/security-question", {
         state: { token: response.data.jwtToken },
-        
       });
     } 
     catch (error) {

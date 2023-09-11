@@ -39,6 +39,7 @@ const CreateAccount = () => {
       terms: "",
     },
   });
+  
   const {
     register,
     handleSubmit,
@@ -46,6 +47,7 @@ const CreateAccount = () => {
     setValue,
     reset,
   } = methods;
+  
   const navigate = useNavigate();
   const [allErrorsState, setAllErrors] = useState("");
   const [inValid, setInValid] = useState("");
@@ -85,7 +87,7 @@ const CreateAccount = () => {
       } 
     } catch (error) {
       if (error.response) {
-         setInValid(
+        setInValid(
           error.response.data.message === "User already exists! Please login" &&
             error.response.data.message
         );

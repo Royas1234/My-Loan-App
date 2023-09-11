@@ -49,8 +49,7 @@ const CreateAccount = () => {
   } = methods;
   
   const navigate = useNavigate();
-  const [allErrorsState, setAllErrors] = useState("");
-  const [inValid, setInValid] = useState("");
+  const [backendError, setBackendError] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   
@@ -87,15 +86,8 @@ const CreateAccount = () => {
       } 
     } catch (error) {
       if (error.response) {
-        setInValid(
-          error.response.data.message === "User already exists! Please login" &&
-            error.response.data.message
-        );
-        setAllErrors(
-          !error.response.data.message ===
-            "User already exists! Please login" && error.response.data.message
-        );
-     
+        const errorMessage = error.response.data.message;
+        setBackendError(errorMessage);
       }
       reset();
       setValue ("radioButton", "")
@@ -114,22 +106,10 @@ const CreateAccount = () => {
 
   return (
     <AuthLayout title={"Create an account"} formFooter={formFooter}>
-      {inValid && (
-        <span style={{ color: "red", marginBottom: "30px" }}>
-          User already exists! Please{" "}
-          <a href="/"
-            style={{ textDecoration: "underline" }}
-            onClick={() => navigate("/login")}
-          >
-            Login
-          </a>
-        </span>
-      )}
-      {!inValid && allErrorsState && (
-        <span style={{ color: "red", marginBottom: "30px" }}>
-          {allErrorsState}
-        </span>
-      )}
+      {backendError && 
+      <span style={{ color: "red", marginBottom: "30px"}}>
+        {backendError}
+      </span>}
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormInput

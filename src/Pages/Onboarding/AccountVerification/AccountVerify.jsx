@@ -13,7 +13,7 @@ const AccountVerify = () => {
   const location = useLocation();
   const email = location.state?.email || "";
   const [resendTimeout, setResendTimeout] = useState(30);
-  const [inValid, setInValid] = useState("");
+  const [backendError, setBackendError] = useState("");
 
   const userSchema = Yup.object().shape({
     otp1: Yup.string()
@@ -47,8 +47,7 @@ const AccountVerify = () => {
         setResendTimeout((prevTimeout) => prevTimeout - 1);
       }
     }, 1000);
-
-    return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
   }, [resendTimeout]);
 
   const handleResendClick = () => {
@@ -58,13 +57,13 @@ const AccountVerify = () => {
   };
 
   const handleVerifyClick = async (values) => {
-    const data = `${values.otp1}${values.otp2}${values.otp3}${values.otp4}`;
+    const otp = `${values.otp1}${values.otp2}${values.otp3}${values.otp4}`;
     try {
       const response = await axios.post(
        `${process.env.REACT_APP_BACKEND_URL}/verify-account`,
         {
           email: email,
-          token: data,
+          token: otp,
         }
       );
       navigate("/security-question", {
@@ -73,10 +72,8 @@ const AccountVerify = () => {
     } 
     catch (error) {
       if (error.response) {
-        setInValid(
-          error.response.data.message === "Invalid verification code" &&
-          error.response.data.message
-        );
+        const errorMessage = error.response.data.message;
+          setBackendError(errorMessage);
       } 
     }
   };
@@ -89,6 +86,7 @@ const AccountVerify = () => {
       </a>
     </>
   );
+  
   if (!email){
     return <Navigate to="/create-account"/>
    
@@ -99,8 +97,8 @@ const AccountVerify = () => {
       subtitle={`Thank you for signing up. Please enter the verification code we sent to your email address ${email}`}
       formFooter={formFooter}
     >
-      {inValid && (
-        <span style={{ color: "red", marginBottom: "30px" }}>{inValid}</span>
+      {backendError && (
+        <span style={{ color: "red", marginBottom: "30px" }}>{backendError}</span>
       )}
       <FormProvider {...methods}>
         <form
@@ -122,8 +120,8 @@ const AccountVerify = () => {
                   mr={["10px", "20px"]}
                   bgColor="white"
                   color="black"
-                  border={inValid ? "2px" : "1px"}
-                  borderColor={inValid ? "red" : "rgb(203, 203, 203)"}
+                  border={backendError? "2px" : "1px"}
+                  borderColor={backendError? "red" : "rgb(203, 203, 203)"}
                 />
                 <PinInputField
                   name={`otp2`}
@@ -135,8 +133,8 @@ const AccountVerify = () => {
                   mr={["10px", "20px"]}
                   bgColor="white"
                   color="black"
-                  border={inValid ? "2px" : "1px"}
-                  borderColor={inValid ? "red" : "rgb(203, 203, 203)"}
+                  border={backendError? "2px" : "1px"}
+                  borderColor={backendError? "red" : "rgb(203, 203, 203)"}
                 />
                 <PinInputField
                   name={`otp3`}
@@ -148,8 +146,8 @@ const AccountVerify = () => {
                   mr={["10px", "20px"]}
                   bgColor="white"
                   color="black"
-                  border={inValid ? "2px" : "1px"}
-                  borderColor={inValid ? "red" : "rgb(203, 203, 203)"}
+                  border={backendError? "2px" : "1px"}
+                  borderColor={backendError ? "red" : "rgb(203, 203, 203)"}
                 />
                 <PinInputField
                   name={`otp4`}
@@ -161,8 +159,8 @@ const AccountVerify = () => {
                   mr={["10px", "20px"]}
                   bgColor="white"
                   color="black"
-                  border={inValid ? "2px" : "1px"}
-                  borderColor={inValid ? "red" : "rgb(203, 203, 203)"}
+                  border={backendError ? "2px" : "1px"}
+                  borderColor={backendError ? "red" : "rgb(203, 203, 203)"}
                 />
               </PinInput>
             </HStack>

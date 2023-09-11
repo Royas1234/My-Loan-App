@@ -35,9 +35,9 @@ const Login = () => {
   } = methods;
 
   const navigate = useNavigate();
-  const [allErrorsState, setAllErrors] = useState("");
-  const [inValid, setInValid] = useState("");
+  const [errorState, setErrorState] = useState("")
   const [passwordVisible, setPasswordVisible] = useState(false);
+  
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
@@ -48,28 +48,16 @@ const Login = () => {
       password: data.password,
     };
     try {
-      const response = await axios.post(
+      await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/login`,
         values
       );
       navigate("/dashboard/overview");
-      console.log("Form submitted successfully");
-      console.log(response.data)
     } 
     catch (error) {
       if (error.response) {
-        console.log("Request failed with status code:", error.response.status);
-        console.log("Response data:", error.response.data);
-        setInValid(
-          error.response.data.message === "User not found. Please signup" &&
-            error.response.data.message
-        );
-        setAllErrors(
-          !error.response.data.message === "User not found. Please signup" &&
-            error.response.data.message
-        );
-      } else {
-        console.error("Error while submitting form:", error.message);
+        const errorMessage = error.response.data.message;
+          setErrorState(errorMessage);
       }
       reset();
     }
@@ -87,20 +75,9 @@ const Login = () => {
       subtitle="Enter your details to sign in"
       formFooter={formFooter}
     >
-      {inValid && (
-        <span style={{ color: "red", marginBottom: "30px" }}>
-          User already exists! Please{" "}
-          <a href="/"
-            style={{ textDecoration: "underline" }}
-            onClick={() => navigate("/create-account")}
-          >
-            Login
-          </a>
-        </span>
-      )}
-      {!inValid && allErrorsState && (
-        <span style={{ color: "red", marginBottom: "30px" }}>
-          {allErrorsState}
+      {errorState && (
+        <span style={{ color: "red", marginBottom: "30px"}}>
+          {errorState}
         </span>
       )}
       <FormProvider {...methods}>

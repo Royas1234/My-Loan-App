@@ -49,12 +49,12 @@ function SecurityQuestion() {
         }
       };
     try {
-     const response = await axios.put(
+        await axios.put(
         `${process.env.REACT_APP_BACKEND_URL}/account/security-questions`,
          values
       );
-      navigate("/login");
-      console.log(response)
+        navigate("/login");
+    
     } 
     catch (error) {
       if (error.response) {

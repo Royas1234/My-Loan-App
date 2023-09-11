@@ -98,6 +98,7 @@ const CreateAccount = () => {
      
       }
       reset();
+      setValue ("radioButton", "")
     }
   };
 

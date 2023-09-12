@@ -1,12 +1,13 @@
+import React from "react";
 import styles from "../styles.module.css";
 import LoanDefaultersText from "./LwFlexText";
 import LoanDefaultersImg from "./LwFlexImg";
 import LoanDefaulters from "../../../../Images/loanDefaulters.svg";
 
 const listItems = [
-  "Enhance loan approval accuracy.",
-  "Reduce the risk of defaults.",
-  "Streamline lending decisions.",
+ "Enhance loan approval accuracy.",
+ "Reduce the risk of defaults.",
+ "Streamline lending decisions.",
 ];
 
 const heading = `Identify loan defaulters precision.`;
@@ -19,16 +20,16 @@ creditworthiness, allowing lenders to make better-informed lending
 decisions.`;
 
 const LwImgTxt = () => {
-  return (
-    <section className={styles.loanDefaulters}>
-      <LoanDefaultersText
-        listItems={listItems}
-        paragraph={paragraph}
-        heading={heading}
-      />
-      <LoanDefaultersImg image={LoanDefaulters} />
-    </section>
-  );
+ return (
+  <section className={styles.loanDefaulters}>
+   <LoanDefaultersText
+    listItems={listItems}
+    paragraph={paragraph}
+    heading={heading}
+   />
+   <LoanDefaultersImg image={LoanDefaulters} />
+  </section>
+ );
 };
 
 export default LwImgTxt;

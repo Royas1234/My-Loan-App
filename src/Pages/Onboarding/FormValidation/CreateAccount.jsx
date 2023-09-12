@@ -11,20 +11,24 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "../../../components/NewForm/form/FormInput";
 
 const userSchema = Yup.object().shape({
-  name: 
-    Yup.string().required("Please enter your name"),
-  email: 
-    Yup.string().email("Please enter email address")
+  name: Yup.string().required("Please enter your name"),
+  email: Yup.string()
+    .email("Please enter email address")
     .required("Please enter a valid email address"),
-  password: 
-    Yup.string().required("Please provide a password that contains atleast 6 characters including a number")
+  password: Yup.string()
+    .required(
+      "Please provide a password that contains atleast 6 characters including a number"
+    )
     .matches(
       /^(?=.*\d).*$/,
       "Please provide a password that contains atleast 6 characters including a number"
     )
-    .min(6, "Please provide a password that contains atleast 6 characters including a number"),
-  confirmPassword: 
-    Yup.string().oneOf([Yup.ref("password")],
+    .min(
+      6,
+      "Please provide a password that contains atleast 6 characters including a number"
+    ),
+  confirmPassword: Yup.string().oneOf(
+    [Yup.ref("password")],
     "Your Password does not match"
   ),
   radioButton: Yup.string()
@@ -39,7 +43,7 @@ const CreateAccount = () => {
       terms: "",
     },
   });
-  
+
   const {
     register,
     handleSubmit,
@@ -47,13 +51,13 @@ const CreateAccount = () => {
     setValue,
     reset,
   } = methods;
-  
+
   const navigate = useNavigate();
-  const [backendError, setBackendError] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
-  
-  const fullNameArray  = useState("");
+
+  const fullNameArray = useState("");
   const setFullName = fullNameArray[1];
 
   const togglePasswordVisibility = () => {
@@ -69,12 +73,11 @@ const CreateAccount = () => {
       fullName: data.name,
       email: data.email,
       password: data.password,
-    
     };
 
     try {
       const response = await axios.post(
-      `${process.env.REACT_APP_BACKEND_URL}/create-account`,
+        `${process.env.REACT_APP_BACKEND_URL}/create-account`,
         values
       );
       if (response.status === 201) {
@@ -83,14 +86,13 @@ const CreateAccount = () => {
         navigate("/account-verify", {
           state: { email: data.email, name: data.name },
         });
-      } 
+      }
     } catch (error) {
       if (error.response) {
-        const errorMessage = error.response.data.message;
-        setBackendError(errorMessage);
+        setErrorMessage(error.response.data.message);
       }
       reset();
-      setValue ("radioButton", "")
+      setValue("radioButton", "");
     }
   };
 
@@ -100,16 +102,20 @@ const CreateAccount = () => {
 
   const formFooter = (
     <p>
-      Already have an account? <a href="/" onClick={() => navigate("/login")}>Sign In</a>
+      Already have an account?{" "}
+      <a href="/" onClick={() => navigate("/login")}>
+        Sign In
+      </a>
     </p>
   );
 
   return (
     <AuthLayout title={"Create an account"} formFooter={formFooter}>
-      {backendError && 
-      <span style={{ color: "red", marginBottom: "30px"}}>
-        {backendError}
-      </span>}
+      {errorMessage && (
+        <span style={{ color: "red", marginBottom: "30px" }}>
+          {errorMessage}
+        </span>
+      )}
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormInput

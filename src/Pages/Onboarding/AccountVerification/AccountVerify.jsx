@@ -13,7 +13,7 @@ const AccountVerify = () => {
   const location = useLocation();
   const email = location.state?.email || "";
   const [resendTimeout, setResendTimeout] = useState(30);
-  const [backendError, setBackendError] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const userSchema = Yup.object().shape({
     otp1: Yup.string()
@@ -47,7 +47,7 @@ const AccountVerify = () => {
         setResendTimeout((prevTimeout) => prevTimeout - 1);
       }
     }, 1000);
-      return () => clearTimeout(timer);
+    return () => clearTimeout(timer);
   }, [resendTimeout]);
 
   const handleResendClick = () => {
@@ -60,7 +60,7 @@ const AccountVerify = () => {
     const otp = `${values.otp1}${values.otp2}${values.otp3}${values.otp4}`;
     try {
       const response = await axios.post(
-       `${process.env.REACT_APP_BACKEND_URL}/verify-account`,
+        `${process.env.REACT_APP_BACKEND_URL}/verify-account`,
         {
           email: email,
           token: otp,
@@ -69,12 +69,10 @@ const AccountVerify = () => {
       navigate("/security-question", {
         state: { token: response.data.jwtToken },
       });
-    } 
-    catch (error) {
+    } catch (error) {
       if (error.response) {
-        const errorMessage = error.response.data.message;
-          setBackendError(errorMessage);
-      } 
+        setErrorMessage(error.response.data.message);
+      }
     }
   };
 
@@ -86,10 +84,9 @@ const AccountVerify = () => {
       </a>
     </>
   );
-  
-  if (!email){
-    return <Navigate to="/create-account"/>
-   
+
+  if (!email) {
+    return <Navigate to="/create-account" />;
   }
   return (
     <AuthLayout
@@ -97,8 +94,10 @@ const AccountVerify = () => {
       subtitle={`Thank you for signing up. Please enter the verification code we sent to your email address ${email}`}
       formFooter={formFooter}
     >
-      {backendError && (
-        <span style={{ color: "red", marginBottom: "30px" }}>{backendError}</span>
+      {errorMessage && (
+        <span style={{ color: "red", marginBottom: "30px" }}>
+          {errorMessage}
+        </span>
       )}
       <FormProvider {...methods}>
         <form
@@ -120,8 +119,8 @@ const AccountVerify = () => {
                   mr={["10px", "20px"]}
                   bgColor="white"
                   color="black"
-                  border={backendError? "2px" : "1px"}
-                  borderColor={backendError? "red" : "rgb(203, 203, 203)"}
+                  border={errorMessage ? "2px" : "1px"}
+                  borderColor={errorMessage ? "red" : "rgb(203, 203, 203)"}
                 />
                 <PinInputField
                   name={`otp2`}
@@ -133,8 +132,8 @@ const AccountVerify = () => {
                   mr={["10px", "20px"]}
                   bgColor="white"
                   color="black"
-                  border={backendError? "2px" : "1px"}
-                  borderColor={backendError? "red" : "rgb(203, 203, 203)"}
+                  border={errorMessage ? "2px" : "1px"}
+                  borderColor={errorMessage ? "red" : "rgb(203, 203, 203)"}
                 />
                 <PinInputField
                   name={`otp3`}
@@ -146,8 +145,8 @@ const AccountVerify = () => {
                   mr={["10px", "20px"]}
                   bgColor="white"
                   color="black"
-                  border={backendError? "2px" : "1px"}
-                  borderColor={backendError ? "red" : "rgb(203, 203, 203)"}
+                  border={errorMessage ? "2px" : "1px"}
+                  borderColor={errorMessage ? "red" : "rgb(203, 203, 203)"}
                 />
                 <PinInputField
                   name={`otp4`}
@@ -159,8 +158,8 @@ const AccountVerify = () => {
                   mr={["10px", "20px"]}
                   bgColor="white"
                   color="black"
-                  border={backendError ? "2px" : "1px"}
-                  borderColor={backendError ? "red" : "rgb(203, 203, 203)"}
+                  border={errorMessage ? "2px" : "1px"}
+                  borderColor={errorMessage ? "red" : "rgb(203, 203, 203)"}
                 />
               </PinInput>
             </HStack>

@@ -1,10 +1,8 @@
-
 import AuthLayout from "../../../components/Layout/AuthLayout";
 import FilledBtn from "../../../components/Button/FilledBtn";
 import "./Login.css";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-
 
 const NewPassword = () => {
   const {
@@ -16,15 +14,8 @@ const NewPassword = () => {
 
   const onSubmit = () => {
     let isValid = Object.keys(errors).length === 0;
-      isValid && navigate("/login");
-    
+    isValid && navigate("/login");
   };
-
-  // const formFooter = (
-  //   <p>
-  //     Already have an account? <a href="/loginn">Sign In</a>
-  //   </p>
-  // );
 
   return (
     <AuthLayout

@@ -56,7 +56,9 @@ const Login = () => {
         values
       );
       localStorage.setItem("token", JSON.stringify(response.data.jwtToken));
-      navigate("/dashboard/overview");
+      navigate("/dashboard/overview", {
+        state: { userToken: response.data.jwtToken },
+      });
     } catch (error) {
       if (error.response) {
         const errorMessage = error.response.data.message;

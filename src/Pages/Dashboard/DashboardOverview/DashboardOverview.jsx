@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Navigate, useLocation } from "react-router-dom";
 import DashSearch from "./components/DashSearch";
 import PaginationTable from "../../../components/Overview/PaginationTable";
 import "./dashboard.css";
@@ -9,14 +10,16 @@ const DashboardOverview = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [loanData, setLoanData] = useState([]);
   const [searchItems, setSearchItems] = useState("");
-
   const categoryStateArray = useState("");
   const setSelectedCategory = categoryStateArray[1];
+
+  const location = useLocation();
+  const token = location.state?.userToken;
 
   useEffect(() => {
     const savedToken = JSON.parse(localStorage.getItem("token"));
     if (savedToken) {
-      console.log(savedToken);
+      console.log({ savedToken });
     }
   }, []);
 
@@ -60,6 +63,9 @@ const DashboardOverview = () => {
     setSearchResults(filteredResults);
   };
 
+  if (!token) {
+    return <Navigate to="/login" />;
+  }
   return (
     <div className="overview-container container">
       <div className="explore">

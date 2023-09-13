@@ -19,8 +19,6 @@ module.exports = {
   ecmaVersion: "latest",
  },
  rules: {
-  //  "spaced-comment": 0,
-  //  "no-undef": "off",
   "global-require": "off",
   "react/prop-types": "off",
   "import/prefer-default-export": "off",
@@ -56,7 +54,7 @@ module.exports = {
   "consistent-return": "off",
   "no-use-before-define": "off",
   "jsx-a11y/control-has-associated-label": "off",
-  // "no-console": "off",
+  "no-console": "off",
   "no-alert": "off",
   "react/jsx-no-constructed-context-values": "off",
  },

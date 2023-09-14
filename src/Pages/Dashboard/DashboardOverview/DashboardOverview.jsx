@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import DashSearch from "./components/DashSearch";
 import PaginationTable from "../../../components/Overview/PaginationTable";
 import "./dashboard.css";
@@ -13,15 +13,7 @@ const DashboardOverview = () => {
   const categoryStateArray = useState("");
   const setSelectedCategory = categoryStateArray[1];
 
-  const location = useLocation();
-  const token = location.state?.userToken;
-
-  useEffect(() => {
-    const savedToken = JSON.parse(localStorage.getItem("token"));
-    if (savedToken) {
-      console.log({ savedToken });
-    }
-  }, []);
+  const savedToken = localStorage.getItem("token");
 
   useEffect(() => {
     axios
@@ -63,7 +55,7 @@ const DashboardOverview = () => {
     setSearchResults(filteredResults);
   };
 
-  if (!token) {
+  if (!savedToken) {
     return <Navigate to="/login" />;
   }
   return (

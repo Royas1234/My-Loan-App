@@ -55,10 +55,8 @@ const Login = () => {
         `${process.env.REACT_APP_BACKEND_URL}/login`,
         values
       );
-      localStorage.setItem("token", JSON.stringify(response.data.jwtToken));
-      navigate("/dashboard/overview", {
-        state: { userToken: response.data.jwtToken },
-      });
+      localStorage.setItem("token", response.data.jwtToken);
+      navigate("/dashboard/overview");
     } catch (error) {
       if (error.response) {
         const errorMessage = error.response.data.message;

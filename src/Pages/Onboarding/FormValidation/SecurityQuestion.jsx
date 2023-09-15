@@ -9,6 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "../../../components/NewForm/form/FormInput";
 import { useLocation } from "react-router-dom";
 import { Navigate } from "react-router-dom";
+import { useState } from "react";
 
 function SecurityQuestion() {
  const userSchema = Yup.object().shape({
@@ -29,40 +30,32 @@ function SecurityQuestion() {
   handleSubmit,
   formState: { isSubmitting },
  } = methods;
- const navigate = useNavigate();
 
+ const [errorState, setErrorState] = useState("");
+ const navigate = useNavigate();
  const location = useLocation();
  const token = location.state?.token;
 
  const onSubmit = async (data) => {
+  const { firstQuestion, firstAnswer, secondQuestion, secondAnswer } = data;
   const values = {
-   securityQuestions: [
-    {
-     question: data.firstQuestion,
-     answer: data.firstAnswer,
-    },
-    {
-     question: data.secondQuestion,
-     answer: data.secondAnswer,
-    },
-   ],
+   jwtToken: token,
+   securityQuestion: {
+    firstQuestion,
+    firstAnswer,
+    secondQuestion,
+    secondAnswer,
+   },
   };
-
   try {
-   const response = await axios.put(
-    `https://loanwise.onrender.com/api/${token}/security-question`,
+   await axios.put(
+    `${process.env.REACT_APP_BACKEND_URL}/account/security-questions`,
     values
    );
-   console.log(response.data);
-   console.log("Form submitted successfully");
-
    navigate("/login");
   } catch (error) {
    if (error.response) {
-    console.log("Request failed with status code:", error.response.status);
-    console.log("Response data:", error.response.data);
-   } else {
-    console.error("Error while submitting form:", error.message);
+    setErrorState(error.response.data.message);
    }
   }
  };
@@ -85,12 +78,13 @@ function SecurityQuestion() {
  }
  return (
   <AuthLayout
-   title={"Set Security Question"}
-   subtitle={
-    "To keep your account secured, create 2 security questions and answers"
-   }
+   title="Set Security Question"
+   subtitle="To keep your account secured, create 2 security questions and answers"
   >
    <div className="securityQxn">
+    {errorState && (
+     <span style={{ color: "red", marginBottom: "30px" }}>{errorState}</span>
+    )}
     <FormProvider {...methods}>
      <form onSubmit={handleSubmit(onSubmit)}>
       <Select
@@ -99,7 +93,7 @@ function SecurityQuestion() {
        placeholder="Select a question"
        bgColor="white"
        color="black"
-       mb={"5px"}
+       mb="5px"
        iconColor="#007e99"
        {...register("firstQuestion")}
       >
@@ -107,7 +101,7 @@ function SecurityQuestion() {
       </Select>
       <FormInput
        name="firstAnswer"
-       placeholder={"Enter answer"}
+       placeholder="Enter answer"
        autoFocus={true}
       />
 
@@ -117,14 +111,14 @@ function SecurityQuestion() {
        placeholder="Select a question"
        bgColor="white"
        color="black"
-       mt={"12px"}
-       mb={"5px"}
+       mt="12px"
+       mb="5px"
        iconColor="#007e99"
        {...register("secondQuestion")}
       >
        {option}
       </Select>
-      <FormInput name="secondAnswer" placeholder={"Enter answer"} />
+      <FormInput name="secondAnswer" placeholder="Enter answer" />
 
       <div className="form-btn">
        <Button

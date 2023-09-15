@@ -15,7 +15,7 @@ const NewPassword = () => {
 
  const onSubmit = () => {
   let isValid = Object.keys(errors).length === 0;
-  isValid && navigate("/login");
+  return isValid && navigate("/login");
  };
 
  // const formFooter = (
@@ -26,8 +26,8 @@ const NewPassword = () => {
 
  return (
   <AuthLayout
-   title={"Create New Password"}
-   subTitle={"Please enter a password different from your old password"}
+   title="Create New Password"
+   subTitle="Please enter a password different from your old password"
   >
    <form onSubmit={handleSubmit(onSubmit)}>
     <fieldset>
@@ -36,7 +36,7 @@ const NewPassword = () => {
       {...register("password", { required: true })}
       id="password"
       type="password"
-      placeholder={"Enter answer"}
+      placeholder="Enter answer"
      />
      {errors.password && (
       <p className="errorMessage">
@@ -50,7 +50,7 @@ const NewPassword = () => {
       {...register("confirmPassword", { required: true })}
       id="confirmPassword"
       type="password"
-      placeholder={"Enter answer"}
+      placeholder="Enter answer"
      />
      {errors.confirmPassword && (
       <p className="errorMessage">
@@ -60,7 +60,7 @@ const NewPassword = () => {
     </fieldset>
 
     <div className="form-btn">
-     <FilledBtn type={"submit"} title={"Submit"} />
+     <FilledBtn type="submit" title="Submit" />
     </div>
    </form>
   </AuthLayout>

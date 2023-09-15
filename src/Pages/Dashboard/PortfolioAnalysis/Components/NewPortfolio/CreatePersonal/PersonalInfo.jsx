@@ -71,8 +71,6 @@ const PersonalInfo = ({ handleNext }) => {
   } catch (error) {
    if (error.response) {
     setInValid(error.response.data.message);
-   } else {
-    console.error("Error while submitting form:", error.message);
    }
   }
  };

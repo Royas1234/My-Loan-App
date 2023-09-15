@@ -26,7 +26,7 @@ export default function FormInput({ label, name, placeholder, ...rest }) {
     placeholder={placeholder}
     bgColor="white"
     borderColor="rgb(203, 203, 203)"
-    outline={"none"}
+    outline="none"
     color="black"
    />
    <FormErrorMessage m={0} fontStyle="italic">

@@ -6,21 +6,21 @@ import LoanAmountComponent from "./LoanAmountComponent";
 import NewBarGraph from "./NewBarGraph";
 
 const ChartCards = () => {
-  return (
-    <div className="ChartCards">
-      <LoanAmount />
-      <div className="chart">
-        <LoanAmountComponent
-          image={Earnings}
-          amount={"N6,000,000.00"}
-          description={"Interest Earnings"}
-        />
-        <Barchart />
-        {/* <Barchart /> */}
-        <NewBarGraph />
-      </div>
-    </div>
-  );
+ return (
+  <div className="ChartCards">
+   <LoanAmount />
+   <div className="chart">
+    <LoanAmountComponent
+     image={Earnings}
+     amount="N6,000,000.00"
+     description="Interest Earnings"
+    />
+    <Barchart />
+    {/* <Barchart /> */}
+    <NewBarGraph />
+   </div>
+  </div>
+ );
 };
 
 export default ChartCards;

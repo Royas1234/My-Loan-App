@@ -12,13 +12,10 @@ const Newsletter = () => {
    <p>Join Our Newsletter to be up-to-date with our latest news. </p>
    <div className={styles.newsletterBtns}>
     <TransparentBtn
-     title={"Subscribe"}
+     title="Subscribe"
      onClick={() => navigate("/create-account")}
     />
-    <FilledBtn
-     title={"Get A Membership"}
-     onClick={() => navigate("/pricing")}
-    />
+    <FilledBtn title="Get A Membership" onClick={() => navigate("/pricing")} />
    </div>
   </div>
  );

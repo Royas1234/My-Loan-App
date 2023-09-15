@@ -14,10 +14,7 @@ const RevolutionisingTxt = () => {
  return (
   <div className={styles.revText}>
    <LwFlexText paragraph={paragraph} heading={heading} />
-   <FilledBtn
-    title={"Get Started"}
-    onClick={() => navigate("/create-account")}
-   />
+   <FilledBtn title="Get Started" onClick={() => navigate("/create-account")} />
   </div>
  );
 };

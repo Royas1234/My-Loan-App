@@ -1,53 +1,38 @@
 .otp_input-Content {
-  display: flex;
-  gap: 40px;
-  flex: 1;
+ display: flex;
+ gap: 40px;
+ flex: 1;
 }
 
-/* 
-.Verify-btn-Content {
-  margin: 28px 0;
-} */
-
-/* .OTP-Content {
-  text-align: center;
-  margin-top: 68px;
-} */
-
 .otp_input-items {
-  flex: 0.25;
+ flex: 0.25;
 }
 
 .otp_input-items input {
-  font-weight: 500;
-  font-size: 50px;
-  text-align: center;
-  width: 100%;
-  padding: 30px 20px;
-  margin: 0;
+ font-weight: 500;
+ font-size: 50px;
+ text-align: center;
+ width: 100%;
+ padding: 30px 20px;
+ margin: 0;
 }
 
 .otp_input-items input:focus {
-  outline: none;
+ outline: none;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+ -webkit-appearance: none;
+ margin: 0;
 }
-
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
 @media screen and (max-width: 768px) {
-  .otp_input-Content {
-    gap: 15px;
-  }
+ .otp_input-Content {
+  gap: 15px;
+ }
 
-  .otp_input-items input {
-    padding: 10px;
-    font-size: 60px;
-  }
+ .otp_input-items input {
+  padding: 10px;
+  font-size: 60px;
+ }
 }

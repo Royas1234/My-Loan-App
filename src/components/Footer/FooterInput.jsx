@@ -18,7 +18,7 @@ const FooterInput = () => {
    <div className={styles.form}>
     <label htmlFor="email">Stay In Touch</label>
     <input type="email" name="" id="" placeholder="Your Email" />
-    <FilledBtn title={"Continue"} />
+    <FilledBtn title="Continue" />
    </div>
   </div>
  );

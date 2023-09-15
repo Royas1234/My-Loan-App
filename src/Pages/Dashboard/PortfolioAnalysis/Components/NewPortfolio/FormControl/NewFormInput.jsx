@@ -18,7 +18,7 @@ const NewFormInput = ({ label, name, placeholder, type, ...rest }) => {
 
  return (
   <FormControl isInvalid={Boolean(error)} mb="8px">
-   <FormLabel m={0} fontSize={"14px"} padding="2px" color="#00151a">
+   <FormLabel m={0} fontSize="14px" padding="2px" color="#00151a">
     {label}
    </FormLabel>
    <Input
@@ -28,7 +28,7 @@ const NewFormInput = ({ label, name, placeholder, type, ...rest }) => {
     {...rest}
     placeholder={placeholder}
     bgColor="white"
-    outline={"none"}
+    outline="none"
     color="black"
    />
    <FormErrorMessage m={0} fontStyle="italic">

@@ -10,7 +10,7 @@ const UserDetails = () => {
    <img src={user.image} alt="User" />
    <h4>{user.title}</h4>
    <p>{user.description}</p>
-   <TransparentBtn title={"Learn More"} icon={arrow} link={"/aboutUs"} />
+   <TransparentBtn title="Learn More" icon={arrow} link="/aboutUs" />
   </div>
  ));
 

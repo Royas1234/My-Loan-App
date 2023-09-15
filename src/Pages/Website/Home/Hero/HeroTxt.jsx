@@ -23,11 +23,11 @@ const HeroTxt = () => {
    <HeroText heading={heading} paragraph={paragraph} />
    <div className={styles.heroBtns}>
     <FilledBtn
-     title={"Get Started"}
+     title="Get Started"
      onClick={() => navigate("/create-account")}
     />
     <TransparentBtn
-     title={"Learn More"}
+     title="Learn More"
      icon={Icon}
      onClick={() => navigate("/about-us")}
     />

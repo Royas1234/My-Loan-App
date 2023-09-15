@@ -192,7 +192,7 @@ const EmploymentInfo = ({ handleNext }) => {
      <div className="dFlex">
       <div className="dFlex1">
        <FormControl mb="8px">
-        <FormLabel m={0} fontSize={"14px"} padding="2px" color="#00151a">
+        <FormLabel m={0} fontSize="14px" padding="2px" color="#00151a">
          Loan Company Verification
         </FormLabel>
         <Select

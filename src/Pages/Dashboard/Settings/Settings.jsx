@@ -1,6 +1,6 @@
 import React from "react";
 import SecurityPrivacy from "./Security-Privacy/SecurityPrivacy";
-import "../Settings/Setting.css";
+import "./Setting.css";
 import Settingtoggle from "./Settingtoggle";
 import Notification from "./Notification/Notification";
 

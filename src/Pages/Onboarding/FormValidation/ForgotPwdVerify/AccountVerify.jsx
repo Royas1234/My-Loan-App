@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "@chakra-ui/react";
 import AuthLayout from "../../../../components/Layout/AuthLayout";
 import { FormProvider, useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { PinInput, PinInputField, HStack } from "@chakra-ui/react";
+import { PinInput, PinInputField, HStack, Button } from "@chakra-ui/react";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 

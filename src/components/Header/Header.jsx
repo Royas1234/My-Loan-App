@@ -3,9 +3,8 @@ import styles from "./Header.module.css";
 import { HiMenu } from "react-icons/hi";
 import { CgClose } from "react-icons/cg";
 import Logo from "../../Images/logo.svg";
-import FilledBtn from "../../components/Button/FilledBtn";
-import { useNavigate, useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
+import FilledBtn from "../Button/FilledBtn";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
 const Header = () => {
  const navigate = useNavigate();

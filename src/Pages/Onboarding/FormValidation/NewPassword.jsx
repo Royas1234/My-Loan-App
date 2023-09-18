@@ -14,7 +14,7 @@ const NewPassword = () => {
  const navigate = useNavigate();
 
  const onSubmit = () => {
-  let isValid = Object.keys(errors).length === 0;
+  const isValid = Object.keys(errors).length === 0;
   return isValid && navigate("/login");
  };
 

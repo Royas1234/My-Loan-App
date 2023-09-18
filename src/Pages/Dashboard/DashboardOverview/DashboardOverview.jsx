@@ -10,10 +10,28 @@ const DashboardOverview = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [loanData, setLoanData] = useState([]);
   const [searchItems, setSearchItems] = useState("");
+  // const [displayLoanCards, setDisplayLoanCards] = useState("");
   const categoryStateArray = useState("");
   const setSelectedCategory = categoryStateArray[1];
 
   const savedToken = localStorage.getItem("token");
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/dashboard/loans`, savedToken)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log({ response });
+        }
+        // setDisplayLoanCards(response.data)
+      })
+      .catch((error) => {
+        if (error.response.status === 401) {
+          <Navigate to="/login" />;
+          console.log(error.response.data.message);
+        }
+      });
+  }, [savedToken]);
 
   useEffect(() => {
     axios

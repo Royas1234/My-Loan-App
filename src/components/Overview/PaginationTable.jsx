@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./overview.css";
 
@@ -6,14 +6,13 @@ import lessthan from "../../Images/Dashboard/lessthan.svg";
 import greaterthan from "../../Images/Dashboard/greaterthan.svg";
 import FilledBtn from "../Button/FilledBtn";
 
-
 const DATA_PER_PAGE = 5;
 
-const PaginationTable = ({data}) => {
+const PaginationTable = ({ Tabledata }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isActive, setIsActive] = useState(false);
-  const totalCount = data.length;
-  
+  const totalCount = Tabledata.length;
+
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
     setIsActive(!isActive);
@@ -21,8 +20,8 @@ const PaginationTable = ({data}) => {
 
   const indexOfLastData = currentPage * DATA_PER_PAGE;
   const indexOfFirstData = indexOfLastData - DATA_PER_PAGE;
-  const currentData = data.slice(indexOfFirstData, indexOfLastData);
-  
+  const currentData = Tabledata.slice(indexOfFirstData, indexOfLastData);
+
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -53,18 +52,18 @@ const PaginationTable = ({data}) => {
               onClick={handleClick}
               className="table-body-container"
             >
-              <td>{item.customer_id}</td>
-              <td>{item.fullName}</td>
-              <td>{item.Category}</td>
-              <td>N{item.Disbursed}</td>
-              <td>{item["due_date"]}</td>
-              <td className={`${item["loan_status"]}`}>
-                <button>{item["loan_status"]}</button>
+              <td>{item.loanId}</td>
+              <td>{item.name}</td>
+              <td>{item.category}</td>
+              <td>N{item.amount}</td>
+              <td>{item.dueDate}</td>
+              <td className={`${item["status"]}`}>
+                <button>{item["status"]}</button>
               </td>
             </tr>
           ))}
         </tbody>
-        { totalCount >= DATA_PER_PAGE && (
+        {totalCount >= DATA_PER_PAGE && (
           <tfoot className="pagination-wrapper">
             <tr>
               <td colSpan="6">
@@ -83,7 +82,7 @@ const PaginationTable = ({data}) => {
                       />
                     </li>
                     {Array.from({
-                      length: Math.ceil(totalCount/ DATA_PER_PAGE),
+                      length: Math.ceil(totalCount / DATA_PER_PAGE),
                     }).map((_, index) => (
                       <li key={index}>
                         <button
@@ -98,7 +97,7 @@ const PaginationTable = ({data}) => {
                         </button>
                       </li>
                     ))}
-                
+
                     <li>
                       {" "}
                       <img

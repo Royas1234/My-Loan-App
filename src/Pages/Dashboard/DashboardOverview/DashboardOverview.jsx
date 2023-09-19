@@ -10,46 +10,38 @@ const DashboardOverview = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [loanData, setLoanData] = useState([]);
   const [searchItems, setSearchItems] = useState("");
-  // const [displayLoanCards, setDisplayLoanCards] = useState("");
   const categoryStateArray = useState("");
   const setSelectedCategory = categoryStateArray[1];
 
-  const savedToken = localStorage.getItem("token");
+  let savedToken = localStorage.getItem("token");
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/dashboard/loans`, savedToken)
+      .get(`${process.env.REACT_APP_BACKEND_URL}/dashboard/loans`, {
+        headers: {
+          Authorization: `Bearer ${savedToken}`,
+        },
+      })
       .then((response) => {
         if (response.status === 200) {
           console.log({ response });
+          setSearchResults(response.data.loans);
+          setLoanData(response.data.loans);
         }
-        // setDisplayLoanCards(response.data)
       })
       .catch((error) => {
-        if (error.response.status === 401) {
-          <Navigate to="/login" />;
-          console.log(error.response.data.message);
+        if (error.response === 401) {
+          console.log(error.response);
+          return <Navigate to="/login" />;
         }
       });
   }, [savedToken]);
 
   useEffect(() => {
-    axios
-      .get("https://loanwise.onrender.com/api/loan-table")
-      .then((response) => {
-        setSearchResults(response.data);
-        setLoanData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
-
-  useEffect(() => {
     const results = loanData.filter((user) => {
       return (
-        user.fullName.toLowerCase().includes(searchItems.toLowerCase()) ||
-        user.customer_id.toLowerCase().includes(searchItems.toLowerCase())
+        user.name.toLowerCase().includes(searchItems.toLowerCase()) ||
+        user.loanId.toLowerCase().includes(searchItems.toLowerCase())
       );
     });
 
@@ -66,7 +58,7 @@ const DashboardOverview = () => {
       return;
     }
     const filteredResults = loanData.filter(
-      (user) => user["loan_status"] === category
+      (user) => user["status"] === category
     );
     setSelectedCategory(category);
 
@@ -89,7 +81,7 @@ const DashboardOverview = () => {
           <DashSearch handleSearch={handleSearch} handleFilter={handleFilter} />
         </div>
         <ChartCards />
-        <PaginationTable data={searchResults} />
+        <PaginationTable Tabledata={searchResults} />
       </div>
     </div>
   );

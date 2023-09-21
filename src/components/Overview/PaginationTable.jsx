@@ -18,9 +18,22 @@ const PaginationTable = ({ Tabledata }) => {
     setIsActive(!isActive);
   };
 
+  function DueDate(loanData) {
+    const dateArray = loanData.map((item) => {
+      const dueDate = new Date(item.dueDate);
+      return dueDate.toISOString().split("T")[0];
+    });
+    return dateArray;
+  }
+
+  let DateCont = DueDate(Tabledata);
+
   const indexOfLastData = currentPage * DATA_PER_PAGE;
   const indexOfFirstData = indexOfLastData - DATA_PER_PAGE;
-  const currentData = Tabledata.slice(indexOfFirstData, indexOfLastData);
+  const currentData =
+    totalCount < DATA_PER_PAGE
+      ? Tabledata
+      : Tabledata.slice(indexOfFirstData, indexOfLastData);
 
   const navigate = useNavigate();
 
@@ -56,7 +69,7 @@ const PaginationTable = ({ Tabledata }) => {
               <td>{item.name}</td>
               <td>{item.category}</td>
               <td>N{item.amount}</td>
-              <td>{item.dueDate}</td>
+              <td>{DateCont[index]}</td>
               <td className={`${item["status"]}`}>
                 <button>{item["status"]}</button>
               </td>

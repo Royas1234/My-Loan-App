@@ -5,10 +5,10 @@ import Earnings from "../../../../Images/Dashboard/earnings.svg";
 import LoanAmountComponent from "./LoanAmountComponent";
 import NewBarGraph from "./NewBarGraph";
 
-const ChartCards = () => {
+const ChartCards = ({ loanCardData }) => {
   return (
     <div className="ChartCards">
-      <LoanAmount />
+      <LoanAmount loanCardData={loanCardData} />
       <div className="chart">
         <LoanAmountComponent
           image={Earnings}

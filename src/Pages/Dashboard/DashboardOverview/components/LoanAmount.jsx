@@ -4,23 +4,44 @@ import TopDown from "../../../../Images/Dashboard/topdownarrow.svg";
 import Cash from "../../../../Images/Dashboard/cash.svg";
 import Earnings from "../../../../Images/Dashboard/earnings.svg";
 
-const LoanAmount = () => {
+const LoanAmount = ({ loanCardData }) => {
+  const totalNumberOfLoans = loanCardData.length;
+
+  function totalLoans(loanData) {
+    let total = 0;
+    loanData.forEach((loan) => {
+      total += loan.amount;
+    });
+    const formatAmout = new Intl.NumberFormat("en-NG", {
+      style: "currency",
+      currency: "NGN",
+    }).format(total);
+    return formatAmout;
+  }
+  const totalAmountOfLoans = totalLoans(loanCardData);
+
+  function loanStatus(loanData) {
+    return loanData.filter((loanStatus) => loanStatus.status === "DEFAULTED");
+  }
+  const defaultedLoans = loanStatus(loanCardData);
+  const totalAmountOfDefaultedLoans = totalLoans(defaultedLoans);
+
   return (
     <>
       <div className="loanAmountContainer">
         <LoanAmountComponent
           image={TopDown}
-          amount={1200}
+          amount={totalNumberOfLoans}
           description={"Total Number of Loans"}
         />
         <LoanAmountComponent
           image={Cash}
-          amount={"N30,500,000.00"}
-          description={"Total Number of Loans"}
+          amount={totalAmountOfLoans}
+          description={"Total Amount of Loans"}
         />
         <LoanAmountComponent
           image={TopDown}
-          amount={350}
+          amount={defaultedLoans.length}
           description={"Number of Loans in Default"}
         />
         <LoanAmountComponent
@@ -30,7 +51,7 @@ const LoanAmount = () => {
         />
         <LoanAmountComponent
           image={Cash}
-          amount={"N8,500,000.00"}
+          amount={totalAmountOfDefaultedLoans}
           description={"Amount of Loans in Default"}
         />
         <LoanAmountComponent

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import DashSearch from "./components/DashSearch";
 import PaginationTable from "../../../components/Overview/PaginationTable";
 import "./dashboard.css";
@@ -12,8 +12,9 @@ const DashboardOverview = () => {
   const [searchItems, setSearchItems] = useState("");
   const categoryStateArray = useState("");
   const setSelectedCategory = categoryStateArray[1];
+  const navigate = useNavigate();
 
-  let savedToken = localStorage.getItem("token");
+  const savedToken = localStorage.getItem("token");
 
   useEffect(() => {
     axios
@@ -23,19 +24,16 @@ const DashboardOverview = () => {
         },
       })
       .then((response) => {
-        if (response.status === 200) {
-          console.log({ response });
-          setSearchResults(response.data.loans);
-          setLoanData(response.data.loans);
-        }
+        setSearchResults(response.data.loans);
+        setLoanData(response.data.loans);
       })
       .catch((error) => {
-        if (error.response === 401) {
-          console.log(error.response);
-          return <Navigate to="/login" />;
+        if (error.response && error.response.status === 401) {
+          localStorage.removeItem("token");
+          navigate("/login");
         }
       });
-  }, [savedToken]);
+  }, [savedToken, navigate]);
 
   useEffect(() => {
     const results = loanData.filter((user) => {
@@ -58,7 +56,7 @@ const DashboardOverview = () => {
       return;
     }
     const filteredResults = loanData.filter(
-      (user) => user["status"] === category
+      (user) => user.status.toLowerCase() === category.toLowerCase()
     );
     setSelectedCategory(category);
 
@@ -80,7 +78,7 @@ const DashboardOverview = () => {
         <div>
           <DashSearch handleSearch={handleSearch} handleFilter={handleFilter} />
         </div>
-        <ChartCards />
+        <ChartCards loanCardData={searchResults} />
         <PaginationTable Tabledata={searchResults} />
       </div>
     </div>

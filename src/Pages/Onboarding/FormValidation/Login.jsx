@@ -10,19 +10,22 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "../../../components/NewForm/form/FormInput";
 
-
-
 const userSchema = Yup.object().shape({
   email: Yup.string()
     .email("Please enter email address")
     .required("Please enter a valid email address"),
   password: Yup.string()
-    .required("Please provide a password that contains atleast 6 characters including a number")
+    .required(
+      "Please provide a password that contains atleast 6 characters including a number"
+    )
     .matches(
       /^(?=.*\d).*$/,
       "Please provide a password that contains atleast 6 characters including a number"
     )
-    .min(6, "Please provide a password that contains atleast 6 characters including a number"),
+    .min(
+      6,
+      "Please provide a password that contains atleast 6 characters including a number"
+    ),
 });
 
 const Login = () => {
@@ -30,14 +33,14 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors},
+    formState: { errors },
     reset,
   } = methods;
 
   const navigate = useNavigate();
-  const [errorState, setErrorState] = useState("")
+  const [errorState, setErrorState] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
-  
+
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
@@ -48,16 +51,16 @@ const Login = () => {
       password: data.password,
     };
     try {
-      await axios.post(
+      const response = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/login`,
         values
       );
+      localStorage.setItem("token", response.data.jwtToken);
       navigate("/dashboard/overview");
-    } 
-    catch (error) {
+    } catch (error) {
       if (error.response) {
         const errorMessage = error.response.data.message;
-          setErrorState(errorMessage);
+        setErrorState(errorMessage);
       }
       reset();
     }
@@ -76,9 +79,7 @@ const Login = () => {
       formFooter={formFooter}
     >
       {errorState && (
-        <span style={{ color: "red", marginBottom: "30px"}}>
-          {errorState}
-        </span>
+        <span style={{ color: "red", marginBottom: "30px" }}>{errorState}</span>
       )}
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>

@@ -50,9 +50,9 @@ const PortfolioPaginationTable = ({ data }) => {
        <td>{item.fullName}</td>
        <td>{item.Category}</td>
        <td>N{item.Disbursed}</td>
-       <td>{item["due_date"]}</td>
-       <td className={`${item["loan_status_2"]}`}>
-        <button>{item["loan_status_2"]}</button>
+       <td>{item.due_date}</td>
+       <td className={`${item.loan_status_2}`}>
+        <button>{item.loan_status_2}</button>
        </td>
       </tr>
      ))}

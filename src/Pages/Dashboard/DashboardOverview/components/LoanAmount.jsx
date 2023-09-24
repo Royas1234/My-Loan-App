@@ -15,40 +15,38 @@ const LoanAmount = ({ loanCardData }) => {
  const totalAmountOfDefaultedLoans = calculateTotalLoans(defaultedLoans);
 
  return (
-  <>
-   <div className="loanAmountContainer">
-    <LoanAmountComponent
-     image={TopDown}
-     amount={totalNumberOfLoans}
-     description="Total Number of Loans"
-    />
-    <LoanAmountComponent
-     image={Cash}
-     amount={totalAmountOfLoans}
-     description="Total Amount of Loans"
-    />
-    <LoanAmountComponent
-     image={TopDown}
-     amount={defaultedLoans.length}
-     description="Number of Loans in Default"
-    />
-    <LoanAmountComponent
-     image={Cash}
-     amount="N12,000,000.00"
-     description="Total Recovered loan"
-    />
-    <LoanAmountComponent
-     image={Cash}
-     amount={totalAmountOfDefaultedLoans}
-     description="Amount of Loans in Default"
-    />
-    <LoanAmountComponent
-     image={Earnings}
-     amount="N6,000,000.00"
-     description="Interest Earnings"
-    />
-   </div>
-  </>
+  <div className="loanAmountContainer">
+   <LoanAmountComponent
+    image={TopDown}
+    amount={totalNumberOfLoans}
+    description="Total Number of Loans"
+   />
+   <LoanAmountComponent
+    image={Cash}
+    amount={totalAmountOfLoans}
+    description="Total Amount of Loans"
+   />
+   <LoanAmountComponent
+    image={TopDown}
+    amount={defaultedLoans.length}
+    description="Number of Loans in Default"
+   />
+   <LoanAmountComponent
+    image={Cash}
+    amount="N12,000,000.00"
+    description="Total Recovered loan"
+   />
+   <LoanAmountComponent
+    image={Cash}
+    amount={totalAmountOfDefaultedLoans}
+    description="Amount of Loans in Default"
+   />
+   <LoanAmountComponent
+    image={Earnings}
+    amount="N6,000,000.00"
+    description="Interest Earnings"
+   />
+  </div>
  );
 };
 

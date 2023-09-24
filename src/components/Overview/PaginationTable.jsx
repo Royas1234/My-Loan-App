@@ -58,8 +58,8 @@ const PaginationTable = ({ Tabledata }) => {
 
        <td>{new Date(item.dueDate).toLocaleDateString()}</td>
 
-       <td className={`${item["status"]}`}>
-        <button>{item["status"]}</button>
+       <td className={`${item.status}`}>
+        <button>{item.status}</button>
        </td>
       </tr>
      ))}

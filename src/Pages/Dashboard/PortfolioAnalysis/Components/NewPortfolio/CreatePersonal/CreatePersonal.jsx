@@ -33,10 +33,13 @@ const CreatePersonal = () => {
     <UnsuccessfulReport />,
   ];
 
-  const backLink = () =>
-    activeStep === 0
-      ? navigate("/dashboard/portfolio")
-      : activeStep <= 2 && !(activeStep < 1) && setActiveStep(activeStep - 1);
+  const backLink = () => {
+    console.log("back button clicked");
+    console.log("current step clicked", activeStep);
+    return activeStep > 0
+      ? setActiveStep(activeStep - 1)
+      : navigate("/dashboard/portfolio");
+  };
 
   const activeStepText = steps[activeStep];
 

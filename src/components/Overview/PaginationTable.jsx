@@ -8,10 +8,10 @@ import FilledBtn from "../Button/FilledBtn";
 
 const DATA_PER_PAGE = 5;
 
-const PaginationTable = ({ data }) => {
+const PaginationTable = ({ Tabledata }) => {
  const [currentPage, setCurrentPage] = useState(1);
  const [isActive, setIsActive] = useState(false);
- const totalCount = data.length;
+ const totalCount = Tabledata.length;
 
  const paginate = (pageNumber) => {
   setCurrentPage(pageNumber);
@@ -20,7 +20,10 @@ const PaginationTable = ({ data }) => {
 
  const indexOfLastData = currentPage * DATA_PER_PAGE;
  const indexOfFirstData = indexOfLastData - DATA_PER_PAGE;
- const currentData = data.slice(indexOfFirstData, indexOfLastData);
+ const currentData =
+  totalCount < DATA_PER_PAGE
+   ? Tabledata
+   : Tabledata.slice(indexOfFirstData, indexOfLastData);
 
  const navigate = useNavigate();
 
@@ -48,13 +51,15 @@ const PaginationTable = ({ data }) => {
     <tbody>
      {currentData.map((item, index) => (
       <tr key={index} onClick={handleClick} className="table-body-container">
-       <td>{item.customer_id}</td>
-       <td>{item.fullName}</td>
-       <td>{item.Category}</td>
-       <td>N{item.Disbursed}</td>
-       <td>{item["due_date"]}</td>
-       <td className={`${item["loan_status"]}`}>
-        <button>{item["loan_status"]}</button>
+       <td>{item.loanId}</td>
+       <td>{item.name}</td>
+       <td>{item.category}</td>
+       <td>N{item.amount}</td>
+
+       <td>{new Date(item.dueDate).toLocaleDateString()}</td>
+
+       <td className={`${item["status"]}`}>
+        <button>{item["status"]}</button>
        </td>
       </tr>
      ))}

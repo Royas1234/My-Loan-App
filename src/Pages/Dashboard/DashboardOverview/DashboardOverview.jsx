@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, Navigate } from "react-router-dom";
 import DashSearch from "./components/DashSearch";
 import PaginationTable from "../../../components/Overview/PaginationTable";
 import "./dashboard.css";
@@ -9,27 +10,36 @@ const DashboardOverview = () => {
  const [searchResults, setSearchResults] = useState([]);
  const [loanData, setLoanData] = useState([]);
  const [searchItems, setSearchItems] = useState("");
-
- // const [selectedCategory, setSelectedCategory] = useState('')
  const categoryStateArray = useState("");
  const setSelectedCategory = categoryStateArray[1];
+ const navigate = useNavigate();
+
+ const savedToken = localStorage.getItem("token");
 
  useEffect(() => {
   axios
-   .get("https://loanwise.onrender.com/api/loan-table")
+   .get(`${process.env.REACT_APP_BACKEND_URL}/dashboard/loans`, {
+    headers: {
+     Authorization: `Bearer ${savedToken}`,
+    },
+   })
    .then((response) => {
-    setSearchResults(response.data);
-    setLoanData(response.data);
+    setSearchResults(response.data.loans);
+    setLoanData(response.data.loans);
    })
    .catch((error) => {
-    console.error("Error fetching data:", error);
+    if (error.response && error.response.status === 401) {
+     localStorage.removeItem("token");
+     navigate("/login");
+    }
    });
- }, []);
+ }, [savedToken, navigate]);
+
  useEffect(() => {
   const results = loanData.filter((user) => {
    return (
-    user.fullName.toLowerCase().includes(searchItems.toLowerCase()) ||
-    user.customer_id.toLowerCase().includes(searchItems.toLowerCase())
+    user.name.toLowerCase().includes(searchItems.toLowerCase()) ||
+    user.loanId.toLowerCase().includes(searchItems.toLowerCase())
    );
   });
 
@@ -46,13 +56,16 @@ const DashboardOverview = () => {
    return;
   }
   const filteredResults = loanData.filter(
-   (user) => user["loan_status"] === category
+   (user) => user.status.toLowerCase() === category.toLowerCase()
   );
   setSelectedCategory(category);
 
   setSearchResults(filteredResults);
  };
 
+ if (!savedToken) {
+  return <Navigate to="/login" />;
+ }
  return (
   <div className="overview-container container">
    <div className="explore">
@@ -65,8 +78,8 @@ const DashboardOverview = () => {
     <div>
      <DashSearch handleSearch={handleSearch} handleFilter={handleFilter} />
     </div>
-    <ChartCards />
-    <PaginationTable data={searchResults} />
+    <ChartCards loanCardData={searchResults} />
+    <PaginationTable Tabledata={searchResults} />
    </div>
   </div>
  );

@@ -3,7 +3,6 @@ import { useNavigate, useLocation, Navigate } from "react-router-dom";
 import AuthLayout from "../../../components/Layout/AuthLayout";
 import { FormProvider, useForm } from "react-hook-form";
 import { Button, Select } from "@chakra-ui/react";
-
 import axios from "axios";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -46,7 +45,7 @@ function SecurityQuestion() {
    },
   };
   try {
-   await axios.put(
+   await axios.post(
     `${process.env.REACT_APP_BACKEND_URL}/account/security-questions`,
     values
    );

@@ -1,143 +1,145 @@
 /* ---------Search-------- */
 
 .overview-input input::placeholder {
-  font-style: normal;
-  font-weight: 300;
-  font-size: 13px;
-  line-height: 22px;
-  color: #00151a;
+ font-style: normal;
+ font-weight: 300;
+ font-size: 13px;
+ line-height: 22px;
+ color: #00151a;
 }
 
 .table-wrapper {
-  background: #ffffff;
-  border: 1px solid #e6f2f5;
-  box-shadow: 0px 4px 20px #e6f2f5;
-  border-radius: 16px;
-  padding: 18px;
-  overflow-x: auto;
-  white-space: nowrap;
+ background: #ffffff;
+ border: 1px solid #e6f2f5;
+ box-shadow: 0px 4px 20px #e6f2f5;
+ border-radius: 16px;
+ padding: 18px;
+ overflow-x: auto;
+ white-space: nowrap;
 }
 .performance-wrapper {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  align-items: center;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+ display: flex;
+ justify-content: space-between;
+ gap: 10px;
+ align-items: center;
+ padding-bottom: 10px;
+ border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 .performance-wrapper h3 {
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 30px;
-  color: #00151a;
+ font-weight: 600;
+ font-size: 20px;
+ line-height: 30px;
+ color: #00151a;
 }
 .performance-wrapper button {
-  padding: 12px 44px;
-  font-size: 17px;
+ padding: 12px 44px;
+ font-size: 17px;
 }
 
 .table-wrapper table {
-  width: 100%;
-  margin-top: 13px;
-  border-collapse: collapse;
+ width: 100%;
+ margin-top: 13px;
+ border-collapse: collapse;
 }
 th,
 td {
-  text-align: left;
-  padding: 12px 10px;
+ text-align: left;
+ padding: 12px 10px;
 }
 th {
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 22px;
-  color: #00151a;
-  background-color: #e6f2f5;
+ font-weight: 600;
+ font-size: 18px;
+ line-height: 22px;
+ color: #00151a;
+ background-color: #e6f2f5;
 }
 td {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-  color: #00151a;
+ font-weight: 500;
+ font-size: 16px;
+ line-height: 20px;
+ color: #00151a;
 }
-.Active button,
+.ACTIVE button,
 .Declined button,
-.Completed button,
+.COMPLETED button,
 .Pending button,
-.Defaulted button, .Approved button{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 100px;
-  padding: 4px 8px;
-  border-radius: 16px;
-  color: #ffffff;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 22px;
-  text-align: center;
+.DEFAULTED button,
+.Approved button {
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+ justify-content: center;
+ width: 100px;
+ padding: 4px 8px;
+ border-radius: 16px;
+ color: #ffffff;
+ font-weight: 500;
+ font-size: 14px;
+ line-height: 22px;
+ text-align: center;
 }
 .Approved button {
-  background: #17a937;
-  border: 1px solid #17a937;
+ background: #17a937;
+ border: 1px solid #17a937;
 }
-.Active button {
-  background: #17a937;
-  border: 1px solid #17a937;
+.ACTIVE button {
+ background: #17a937;
+ border: 1px solid #17a937;
 }
-.Defaulted button, .Declined button{
-  background: #ff2e2e;
-  border: 1px solid #ff2e2e;
+.DEFAULTED button,
+.Declined button {
+ background: #ff2e2e;
+ border: 1px solid #ff2e2e;
 }
-.Completed button {
-  background: #fd7123;
-  border: 1px solid #fd7123;
+.COMPLETED button {
+ background: #fd7123;
+ border: 1px solid #fd7123;
 }
 
 .pagination {
-  display: flex;
-  justify-content: space-between;
+ display: flex;
+ justify-content: space-between;
 }
 .right-paginate {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+ display: flex;
+ align-items: center;
+ justify-content: center;
 }
 .paginate-btn {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  color: black;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
+ width: 25px;
+ height: 25px;
+ border-radius: 50%;
+ color: black;
+ border: none;
+ background-color: transparent;
+ cursor: pointer;
 }
 .button-active {
-  background: #007e99;
-  border: 1px solid #007e99;
-  color: #ffffff;
+ background: #007e99;
+ border: 1px solid #007e99;
+ color: #ffffff;
 }
 .left-paginate li a {
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 24px;
-  color: #007e99;
+ font-weight: 500;
+ font-size: 15px;
+ line-height: 24px;
+ color: #007e99;
 }
 .paginate-img {
-  width: 13px;
-  height: 13px;
+ width: 13px;
+ height: 13px;
 }
 .paginate-dots {
-  margin-bottom: 5px;
+ margin-bottom: 5px;
 }
 .page-fifty {
-  font-weight: 600;
-  font-size: 13.3px;
-  line-height: 17px;
+ font-weight: 600;
+ font-size: 13.3px;
+ line-height: 17px;
 
-  color: #00151a;
+ color: #00151a;
 }
 /* -----------Portfolio Table----------- */
 .portfolio-pagination-table {
-  margin-top: 20px;
+ margin-top: 20px;
 }

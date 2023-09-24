@@ -51,7 +51,11 @@ const Login = () => {
    password: data.password,
   };
   try {
-   await axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, values);
+   const response = await axios.post(
+    `${process.env.REACT_APP_BACKEND_URL}/login`,
+    values
+   );
+   localStorage.setItem("token", response.data.jwtToken);
    navigate("/dashboard/overview");
   } catch (error) {
    if (error.response) {

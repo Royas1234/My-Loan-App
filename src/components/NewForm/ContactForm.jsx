@@ -42,7 +42,7 @@ function ContactForm() {
    marginX="auto"
    marginY={50}
   >
-   <p style={{ color: "green" }}>{messsage ? messsage : null}</p>
+   <p style={{ color: "green" }}>{messsage}</p>
    <FormProvider {...methods}>
     <form onSubmit={methods.handleSubmit(onSubmit)}>
      <Stack>

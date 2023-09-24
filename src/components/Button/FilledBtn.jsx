@@ -4,13 +4,13 @@ import styles from "../Header/Header.module.css";
 const FilledBtn = ({ title, link, type, onClick, icon, ...props }) => {
  return (
   <button
-   type={type ? type : "button"}
+   type={type}
    className={styles.filledBtn}
    onClick={onClick}
    props={props}
   >
    {icon && <span className="iconPlus">{icon}</span>}
-   {type === "submit" ? title : <a href={link ? link : "#"}>{title}</a>}
+   {type === "submit" ? title : <a href={link}>{title}</a>}
   </button>
  );
 };

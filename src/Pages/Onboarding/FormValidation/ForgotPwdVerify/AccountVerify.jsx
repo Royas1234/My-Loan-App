@@ -72,7 +72,7 @@ const AccVerify = () => {
    const response = await axios.post(
     "https://loanwise.onrender.com/api/verify-signup",
     {
-     email: email,
+     email,
      verificationCode: data,
     }
    );

@@ -61,7 +61,7 @@ const AccountVerify = () => {
    const response = await axios.post(
     `${process.env.REACT_APP_BACKEND_URL}/verify-account`,
     {
-     email: email,
+     email,
      token: otp,
     }
    );

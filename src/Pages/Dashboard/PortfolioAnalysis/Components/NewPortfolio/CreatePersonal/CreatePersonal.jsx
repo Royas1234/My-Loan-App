@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PersonalInfo from "./PersonalInfo";
 import EmploymentInfo from "./EmploymentInfo";
-
 import UnsuccessfulReport from "./UnsuccessfulReport";
 import { useNavigate } from "react-router-dom";
 import SideBar from "../../../../../../components/SideBar/SideBar";
@@ -20,8 +19,7 @@ import {
 const CreatePersonal = () => {
   const back = useState(true);
   const navigate = useNavigate();
-
-  const [activeStep, setActiveStep] = useState(2);
+  const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
     activeStep < 3 && !(activeStep >= 3) && setActiveStep(activeStep + 1);
@@ -34,8 +32,6 @@ const CreatePersonal = () => {
   ];
 
   const backLink = () => {
-    console.log("back button clicked");
-    console.log("current step clicked", activeStep);
     return activeStep > 0
       ? setActiveStep(activeStep - 1)
       : navigate("/dashboard/portfolio");

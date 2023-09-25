@@ -52,7 +52,7 @@ const PersonalInfo = ({ handleNext }) => {
 
   const onSubmit = async (data) => {
     const values = {
-      name: data.fullName,
+      fullName: data.fullName,
       email: data.email,
       address: data.address,
       phoneNumber: data.phoneNumber,
@@ -66,7 +66,7 @@ const PersonalInfo = ({ handleNext }) => {
         values
       );
       handleNext();
-      console.log(response.data)
+      console.log(response.data);
       console.log("Form submitted successfully");
       reset();
     } catch (error) {

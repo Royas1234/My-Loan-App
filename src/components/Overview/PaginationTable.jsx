@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./overview.css";
-
+import Papa from "papaparse"
 import lessthan from "../../Images/Dashboard/lessthan.svg";
 import greaterthan from "../../Images/Dashboard/greaterthan.svg";
 import FilledBtn from "../Button/FilledBtn";
@@ -31,11 +31,23 @@ const PaginationTable = ({ Tabledata }) => {
     navigate("/dashboard/customerpage");
   };
 
+  const  handleDownload = () =>{
+    const csvData = Papa.unparse(Tabledata, {header:true})
+    const blob = new Blob ([csvData], {type :"text/csv"});
+
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download ="loan_performance.csv";
+    link.click();
+
+    URL.revokeObjectURL(link.href)
+  }
+
   return (
     <div className="table-wrapper">
       <div className="performance-wrapper">
         <h3>Loan Performance Table</h3>
-        <FilledBtn title={"Download"} />
+        <FilledBtn title={"Download"} onClick={handleDownload}/>
       </div>
       <table>
         <thead>

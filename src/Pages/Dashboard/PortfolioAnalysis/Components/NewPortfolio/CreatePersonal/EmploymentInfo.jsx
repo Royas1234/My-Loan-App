@@ -57,24 +57,17 @@ const EmploymentInfo = ({ handleNext }) => {
       Verification_by_Loan_Company: data.companyVerification,
       Application_Type: data.appType,
     };
-
+    console.log("here are the values", values);
     try {
-      const response = await axios.post(
+      await axios.post(
         "https://loanwise.onrender.com/borrowers-details",
         values
       );
       localStorage.setItem("email", data.email);
       handleNext();
-      console.log("Form submitted successfully");
-      console.log("Unexpected status code:", response.status);
     } catch (error) {
       if (error.response) {
-        console.log("Request failed with status code:", error.response.status);
-        console.log("Response data:", error.response.data);
-        // Set error state and display error message to the user
         setInValid(error.response.data.message);
-      } else {
-        console.error("Error while submitting form:", error.message);
       }
     }
   };

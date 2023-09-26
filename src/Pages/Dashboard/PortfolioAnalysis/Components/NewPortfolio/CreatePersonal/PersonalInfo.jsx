@@ -41,9 +41,6 @@ const userSchema = Yup.object().shape({
 const PersonalInfo = ({ handleNext }) => {
   const [inValid, setInValid] = useState("");
 
-  /*
-   * Validation
-   */
   const methods = useForm({
     resolver: yupResolver(userSchema),
   });
@@ -52,7 +49,7 @@ const PersonalInfo = ({ handleNext }) => {
 
   const onSubmit = async (data) => {
     const values = {
-      name: data.fullName,
+      fullName: data.fullName,
       email: data.email,
       address: data.address,
       phoneNumber: data.phoneNumber,
@@ -61,22 +58,15 @@ const PersonalInfo = ({ handleNext }) => {
     };
 
     try {
-      const response = await axios.post(
+      await axios.post(
         "https://loanwise.onrender.com/api/borrowers-details",
         values
       );
       handleNext();
-      console.log(response.data);
-      console.log("Form submitted successfully");
       reset();
     } catch (error) {
       if (error.response) {
-        console.log("Request failed with status code:", error.response.status);
-        console.log("Response data:", error.response.data);
-        // Set error state and display error message to the user
         setInValid(error.response.data.message);
-      } else {
-        console.error("Error while submitting form:", error.message);
       }
     }
   };

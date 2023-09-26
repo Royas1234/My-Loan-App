@@ -36,9 +36,8 @@ const EmploymentInfo = ({ handleNext }) => {
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting, errors },
+    formState: { isSubmitting },
   } = methods;
-  console.log(errors, "methods", methods.formState);
 
   const [inValid, setInValid] = useState("");
 

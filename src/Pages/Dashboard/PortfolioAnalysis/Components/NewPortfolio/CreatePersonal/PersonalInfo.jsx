@@ -63,7 +63,6 @@ const PersonalInfo = ({ handleNext }) => {
         values
       );
       handleNext();
-
       reset();
     } catch (error) {
       if (error.response) {

@@ -66,7 +66,7 @@ const PersonalInfo = ({ handleNext }) => {
         values
       );
       handleNext();
-      console.log(response.data)
+      console.log(response.data);
       console.log("Form submitted successfully");
       reset();
     } catch (error) {

@@ -7,8 +7,6 @@ import axios from "axios";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-
-
 const userSchema = Yup.object().shape({
   currentEmployer: Yup.string().required("This field is required"),
   currentRole: Yup.string().required("This field is required"),
@@ -39,9 +37,8 @@ const EmploymentInfo = ({ handleNext }) => {
     register,
     handleSubmit,
     formState: { isSubmitting },
-    
   } = methods;
- 
+
   const [inValid, setInValid] = useState("");
 
   const onSubmit = async (data) => {
@@ -214,7 +211,6 @@ const EmploymentInfo = ({ handleNext }) => {
                 </FormLabel>
                 <Select
                   isDisabled={isSubmitting}
-
                   name="firstQuestion"
                   placeholder="Select option"
                   bgColor="white"

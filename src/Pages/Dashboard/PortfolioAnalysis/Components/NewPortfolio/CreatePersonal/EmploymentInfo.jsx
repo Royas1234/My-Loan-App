@@ -7,8 +7,6 @@ import axios from "axios";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-
-
 const userSchema = Yup.object().shape({
   currentEmployer: Yup.string().required("This field is required"),
   currentRole: Yup.string().required("This field is required"),
@@ -38,10 +36,10 @@ const EmploymentInfo = ({ handleNext }) => {
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting },
-    
+    formState: { isSubmitting, errors },
   } = methods;
- 
+  console.log(errors, "methods", methods.formState);
+
   const [inValid, setInValid] = useState("");
 
   const onSubmit = async (data) => {
@@ -60,24 +58,17 @@ const EmploymentInfo = ({ handleNext }) => {
       Verification_by_Loan_Company: data.companyVerification,
       Application_Type: data.appType,
     };
-
+    console.log("here are the values", values);
     try {
-      const response = await axios.post(
+      await axios.post(
         "https://loanwise.onrender.com/borrowers-details",
         values
       );
       localStorage.setItem("email", data.email);
       handleNext();
-      console.log("Form submitted successfully");
-      console.log("Unexpected status code:", response.status);
     } catch (error) {
       if (error.response) {
-        console.log("Request failed with status code:", error.response.status);
-        console.log("Response data:", error.response.data);
-        // Set error state and display error message to the user
         setInValid(error.response.data.message);
-      } else {
-        console.error("Error while submitting form:", error.message);
       }
     }
   };
@@ -214,7 +205,6 @@ const EmploymentInfo = ({ handleNext }) => {
                 </FormLabel>
                 <Select
                   isDisabled={isSubmitting}
-
                   name="firstQuestion"
                   placeholder="Select option"
                   bgColor="white"
